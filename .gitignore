@@ -1,0 +1,23 @@
+# Виртуальное окружение
+venv/
+env/
+
+# Файлы IDE (PyCharm)
+.idea/
+*.iml
+
+# Кеши Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Django статика/медиа (если есть)
+staticfiles/
+media/
+
+# Файлы окружения
+.env
+*.log
