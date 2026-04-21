@@ -17,8 +17,8 @@ function CourseDetail() {
                         Further adjustments may be needed depending on your card content.</p>
                     <p className="fw-bold">Course By: <a href="#">Teacher 1</a></p>
                     <p className="fw-bold">Duration: 3 hours 30 minutes</p>
-                    <p className="fw-bold">Total Enrolled: 450 studets</p>
-                    <p className="fw-bold">Rating: 4/5</p>
+                    <p className="fw-bold">Total Enrolled: 450 students</p>
+                    <p className="fw-bold">Rating: 4.5/5</p>
                 </div>
             </div>
             { /* Course Videos */}
@@ -27,20 +27,45 @@ function CourseDetail() {
                         Course Videos
                     </h5 >
                     <ul class="list-group list-group-flush">
-                        <li className="list-group-item">Intorudction <button className="btn btn-sm btn-danger
-                        float-end"><i class="bi-youtube"></i></button></li>
-                        <li className="list-group-item">Intorudction <button className="btn btn-sm btn-danger
-                        float-end"><i class="bi-youtube"></i></button></li>
-                        <li className="list-group-item">Intorudction <button className="btn btn-sm btn-danger
-                        float-end"><i class="bi-youtube"></i></button></li>
-                        <li className="list-group-item">Intorudction <button className="btn btn-sm btn-danger
-                        float-end"><i class="bi-youtube"></i></button></li>
-                        <li className="list-group-item">Intorudction <button className="btn btn-sm btn-danger
-                        float-end"><i class="bi-youtube"></i></button></li>
-                        <li className="list-group-item">Intorudction <button className="btn btn-sm btn-danger
-                        float-end"><i class="bi-youtube"></i></button></li>
+                        <li className="list-group-item">Intorudction
+                            <span className="float-end">
+                                <span className="me-5">1 Hour 30 Minutes</span>
+                                <button className="btn btn-sm btn-danger"><i class="bi-youtube"></i></button>
+                            </span>
+                        </li>
+                        <li className="list-group-item">Intorudction
+                            <span className="float-end">
+                                <span className="me-5">1 Hour 30 Minutes</span>
+                                <button className="btn btn-sm btn-danger"><i class="bi-youtube"></i></button>
+                            </span>
+                        </li>
+                        <li className="list-group-item">Intorudction
+                            <span className="float-end">
+                                <span className="me-5">1 Hour 30 Minutes</span>
+                                <button className="btn btn-sm btn-danger"><i class="bi-youtube"></i></button>
+                            </span>
+                        </li>
+                        <li className="list-group-item">Intorudction
+                            <span className="float-end">
+                                <span className="me-5">1 Hour 30 Minutes</span>
+                                <button className="btn btn-sm btn-danger"><i class="bi-youtube"></i></button>
+                            </span>
+                        </li>
+                        <li className="list-group-item">Intorudction
+                            <span className="float-end">
+                                <span className="me-5">1 Hour 30 Minutes</span>
+                                <button className="btn btn-sm btn-danger"><i class="bi-youtube"></i></button>
+                            </span>
+                        </li>
+                        <li className="list-group-item">Intorudction
+                            <span className="float-end">
+                                <span className="me-5">1 Hour 30 Minutes</span>
+                                <button className="btn btn-sm btn-danger"><i class="bi-youtube"></i></button>
+                            </span>
+                        </li>
                     </ul>
             </div>
+
             <h3 className='pb-1 mb-4 mt-5'>Related Courses </h3>
             <div className='row mb-4'>
                 <div className='col-md-3'>
