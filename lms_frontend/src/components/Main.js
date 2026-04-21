@@ -6,8 +6,16 @@ import CourseDetail from './CourseDetail';
 import Login from './User/Login';
 import Register from './User/Register';
 import Dashboard from './User/Dashboard';
+import MyCourses from './User/MyCourses';
+import FavoriteCourses from './User/FavoriteCourses';
+import RecommendedCourses from './User/RecommendedCourses';
 
 import {Routes as Switch, Route} from 'react-router-dom';
+import ProfileSetting from './User/ProfileSetting';
+import ChangePassword from './User/ChangePassword';
+
+
+
 
 function Main() {
   return (
@@ -20,7 +28,12 @@ function Main() {
             <Route path="/user-login" element={<Login />} />
             <Route path="/user-register" element={<Register />} />
             <Route path="/user-dashboard" element={<Dashboard />} />
-        </Switch>
+            <Route path="/my-courses" element={<MyCourses />} />
+            <Route path="/favorite-courses" element={<FavoriteCourses />} />
+            <Route path="/recommended-courses" element={<RecommendedCourses />} />
+            <Route path="/profile-setting" element={<ProfileSetting />} />
+            <Route path="/change-password" element={<ChangePassword />} />
+        </Switch> 
         <Footer />
     </div>
   );
