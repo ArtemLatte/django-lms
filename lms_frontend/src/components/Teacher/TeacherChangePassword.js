@@ -1,13 +1,13 @@
 import {Link} from 'react-router-dom';
-import Sidebar from './Sidebar';
+import TeacherSidebar from './TeacherSidebar';
 
 
-function ChangePassword(){
+function TeacherChangePassword(){
     return (
         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
-                    <Sidebar />
+                    <TeacherSidebar />
                 </aside>
                 <section className="col-md-9">
                     <div  className='card'>
@@ -31,4 +31,4 @@ function ChangePassword(){
     )
 }
 
-export default ChangePassword;
+export default TeacherChangePassword;
