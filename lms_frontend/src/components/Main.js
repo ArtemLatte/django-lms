@@ -23,10 +23,14 @@ import AddCourse from './Teacher/AddCourse';
 import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 
+//List Pages
+import AllCourses from './AllCourses';
+
 import About from './About';
 import Footer from './Footer';
 
 import {Routes as Switch, Route} from 'react-router-dom';
+
 
 function Main() {
   return (
@@ -53,6 +57,7 @@ function Main() {
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
             <Route path="/teacher-detail/:teacher_id" element={<TeacherDetail />} />
+            <Route path="/all-courses" element={<AllCourses />} />
         </Switch> 
         <Footer />
     </div>
