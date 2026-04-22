@@ -1,7 +1,5 @@
 import Header from './Header';
 import Home from './Home';
-import About from './About';
-import Footer from './Footer';
 import CourseDetail from './CourseDetail';
 import Login from './User/Login';
 import Register from './User/Register';
@@ -9,10 +7,19 @@ import Dashboard from './User/Dashboard';
 import MyCourses from './User/MyCourses';
 import FavoriteCourses from './User/FavoriteCourses';
 import RecommendedCourses from './User/RecommendedCourses';
-
-import {Routes as Switch, Route} from 'react-router-dom';
 import ProfileSetting from './User/ProfileSetting';
 import ChangePassword from './User/ChangePassword';
+
+//Teachers
+import TeacherLogin from './Teacher/TeacherLogin';
+import TheacherRegister from './Teacher/TeacherRegister';
+import TeacherDashboard from './Teacher/TeacherDashboard';
+
+import About from './About';
+import Footer from './Footer';
+
+import {Routes as Switch, Route} from 'react-router-dom';
+
 
 
 
@@ -33,6 +40,9 @@ function Main() {
             <Route path="/recommended-courses" element={<RecommendedCourses />} />
             <Route path="/profile-setting" element={<ProfileSetting />} />
             <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/teacher-login" element={<TeacherLogin />} />
+            <Route path="/teacher-register" element={<TheacherRegister />} />
+            <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
         </Switch> 
         <Footer />
     </div>
