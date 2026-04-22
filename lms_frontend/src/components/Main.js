@@ -27,6 +27,7 @@ import TeacherChangePassword from './Teacher/TeacherChangePassword';
 import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import PopularTeachers from './PopularTeachers';
+import CategoryCourses from './CategoryCourses';
 
 import About from './About';
 import Footer from './Footer';
@@ -62,6 +63,7 @@ function Main() {
             <Route path="/all-courses" element={<AllCourses />} />
             <Route path="/popular-courses" element={<PopularCourses />} />
             <Route path="/popular-teachers" element={<PopularTeachers />} />
+            <Route path="/category/:category_slug" element={<CategoryCourses />} />
         </Switch>
         <Footer />
     </div>
