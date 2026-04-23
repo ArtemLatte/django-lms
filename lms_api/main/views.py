@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer
 from . import models
 from rest_framework.response import Response
 from rest_framework import generics
@@ -27,3 +27,12 @@ def teacher_login(request):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = models.CourseCategory.objects.all()
+    serializer_class = CategorySerializer
+
+#Course
+class CourseList(generics.ListCreateAPIView):
+    queryset = models.Course.objects.all()
+    serializer_class = CourseSerializer
