@@ -22,6 +22,7 @@ import UserList from './Teacher/UserList';
 import AddCourse from './Teacher/AddCourse';
 import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
+import TeacherLogout from './Teacher/TeacherLogout';
 
 //List Pages
 import AllCourses from './AllCourses';
@@ -52,6 +53,7 @@ function Main() {
             <Route path="/profile-setting" element={<ProfileSetting />} />
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/teacher-login" element={<TeacherLogin />} />
+            <Route path="/teacher-logout" element={<TeacherLogout />} />
             <Route path="/teacher-register" element={<TeacherRegister />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
             <Route path="/teacher-courses" element={<TeacherCourses />} />
