@@ -9,7 +9,7 @@ function UserList() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">My Courses</h5>
+                        <h5 className="card-header">My Users</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
