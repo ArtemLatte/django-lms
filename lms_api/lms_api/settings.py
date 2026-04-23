@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from unittest.mock import DEFAULT
 
-from django.conf.global_settings import DEFAULT_AUTO_FIELD
+from django.conf.global_settings import DEFAULT_AUTO_FIELD, MEDIA_URL, MEDIA_ROOT
 from dotenv import load_dotenv
 
 load_dotenv()  # загружает переменные из .env
@@ -147,3 +147,6 @@ CORS_ALLOW_ALL_ORIGINS=True
 # CORS_ALLOWED_ORIGINS=[
 #     "http://localhost:3000",
 # ]
+
+MEDIA_URL='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

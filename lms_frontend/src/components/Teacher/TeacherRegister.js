@@ -65,7 +65,7 @@ function TeacherRegister(){
             <div className="row">
                 <div className="col-6 offset-3">
                     {teacherData.status=='success' && <p class="text-success">Thanks for your registration</p>}
-                    {teacherData.status=='error' && <p class="text-danger">Something wrong happend!!</p>}
+                    {teacherData.status=='error' && <p class="text-danger">Something wrong happened!!</p>}
                     <div className="card">
                         <h5 className="card-header">Teacher Register</h5>
                         <div className="card-body">

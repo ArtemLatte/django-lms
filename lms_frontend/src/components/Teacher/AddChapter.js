@@ -1,41 +1,88 @@
 import {Link} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
-
+import { useState, useEffect } from 'react';
+import axios from 'axios'
+const baseUrl = 'http://127.0.0.1:8000/api'
 
 function AddChapter(){
+    const [chapterData,setChapterData]=useState({
+        title:'',
+        description:'',
+        video:'',
+        remarks:''
+    });
+
+    const handleChange=(event)=>{
+        setChapterData({
+            ...chapterData,
+            [event.target.name]:event.target.value
+        });
+    }
+
+    const handleFileChange=(event)=>{
+        setChapterData({
+            ...chapterData,
+            [event.target.name]:event.target.files[0]
+        });
+    }
+
+    const formSubmit = () => {
+        const _formData = new FormData();
+        _formData.append('course', 1);
+        _formData.append('title', chapterData.title);
+        _formData.append('description', chapterData.description);
+        _formData.append('video', chapterData.video, chapterData.video.name);
+        _formData.append('remarks', chapterData.remarks);
+
+        try {
+            axios.post(baseUrl + "/chapter/", _formData, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+            .then((res) => {
+            // console.log(res.data);
+            window.location.href='/add-chapter/1';
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
                     <TeacherSidebar />
                 </aside>
-                <section className="col-md-9">
+                <div className="col-md-9">
                     <div  className='card'>
                         <h5 className='card-header'> Add Chapter</h5>
                         <div className='card-body'>
+                            <form>
                             <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Title</label>
-                                    <input type="email" className="form-control" />
+                                    <label for="title" className="form-label">Title</label>
+                                    <input type="text" onChange={handleChange} name='title' id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Description</label>
-                                    <textarea className="form-control"></textarea>
+                                    <label for="description" className="form-label">Description</label>
+                                    <textarea className="form-control" onChange={handleChange} name='description' id="description"></textarea>
                             </div>
                             <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Video</label>
-                                    <input type="file" className="form-control" />
+                                    <label for="video" className="form-label">Video</label>
+                                    <input type="file" id="video" onChange={handleFileChange} name='video' className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Remarks</label>
-                                    <textarea className="form-control" 
+                                    <label for="techs" className="form-label">Remarks</label>
+                                    <textarea onChange={handleChange} name='remarks' className="form-control"
                                     placeholder="This is video is focused on basic intorduction" 
                                     id="techs"></textarea>
                             </div>
-                            <button className='btn btn-primary'>Submit</button>
+                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
+                            </form>
                         </div>
                     </div>
-                    
-                </section>
+                </div>
             </div>
         </div>
     )

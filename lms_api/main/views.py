@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer
 from . import models
 from rest_framework.response import Response
 from rest_framework import generics
@@ -24,7 +24,7 @@ def teacher_login(request):
     password=request.POST['password']
     teacherData=models.Teacher.objects.get(email=email,password=password)
     if teacherData:
-        return JsonResponse({'bool':True})
+        return JsonResponse({'bool':True, 'teacher_id':teacherData.id})
     else:
         return JsonResponse({'bool':False})
 
@@ -45,3 +45,8 @@ class TeacherCourseList(generics.ListAPIView):
         teacher_id=self.kwargs['teacher_id']
         teacher=models.Teacher.objects.get(pk=teacher_id)
         return models.Course.objects.filter(teacher=teacher)
+
+#Chapter
+class ChapterList(generics.ListCreateAPIView):
+    queryset = models.Chapter.objects.all()
+    serializer_class = ChapterSerializer
