@@ -19,6 +19,8 @@ function TeacherCourses() {
         }
     },[]);
 
+    console.log(teacherId)
+
     return (
         <div className="container mt-4">
             <div className="row">
