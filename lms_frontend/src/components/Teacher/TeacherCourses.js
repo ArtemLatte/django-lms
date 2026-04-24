@@ -19,8 +19,6 @@ function TeacherCourses() {
         }
     },[]);
 
-    console.log(teacherId)
-
     return (
         <div className="container mt-4">
             <div className="row">
@@ -43,7 +41,7 @@ function TeacherCourses() {
                                 <tbody>
                                     {courseData.map((course,index) =>  
                                     <tr>
-                                        <td>{course.title}</td>
+                                        <td><Link to={'/all-chapters/'+course.id}>{course.title}</Link></td>
                                         <td><img src={course.featured_img} width="80" className='rounded' alt={course.title} /></td>
                                         <td><Link to="/">123</Link></td>
                                         <td>
