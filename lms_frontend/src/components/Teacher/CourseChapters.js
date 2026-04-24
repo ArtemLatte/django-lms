@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
+import Swal from 'sweetalert2'
 import axios from 'axios'
 const baseUrl = 'http://127.0.0.1:8000/api'
 
@@ -24,14 +25,35 @@ function CourseChapters(){
     },[]);
 
     //Delete data
-    const Swal = require('sweetalert2');
-    const handleDeleteClick = () => {
+    const handleDeleteClick = (chapter_id) => {
         Swal.fire({
             title: 'Confirm',
             text: 'Are you sure you want to delete this data?',
             icon: 'info',
             confirmButtonText: 'Continue',
             showCancelButton:true
+        }).then((result)=>{
+            if(result.isConfirmed){
+                try{
+                    axios.delete(baseUrl+'/chapter/'+chapter_id)
+                    .then((res)=>{
+                    Swal.fire('success', 'Data has been deleted');
+                        try{
+                            axios.get(baseUrl+'/course-chapters/'+course_id)
+                            .then((res)=>{
+                                    settotalResult(res.data.length)
+                                    setchapterData(res.data);
+                            });
+                            }catch(error){
+                                console.log(error);
+                        }
+                    });
+                }catch(error){
+                    Swal.fire('error', 'Data has not been deleted!!');
+                }
+            }else{
+                Swal.fire('error', 'Data has not been deleted!!');
+            }
         });
     }
 
@@ -71,8 +93,7 @@ function CourseChapters(){
                                         <td>
                                             <Link to={'/edit-chapter/'+chapter.id} className="btn btn-info btn-sm text-white"><i class="bi 
                                             bi-pencil-square"></i></Link>
-                                            <button onClick={handleDeleteClick} 
-                                            to={'/delete-chapter/'+chapter.id} className="btn btn-sm btn-danger ms-1"><i class="bi 
+                                            <button onClick={()=>handleDeleteClick(chapter.id)} to={'/delete-chapter/'+chapter.id} className="btn btn-sm btn-danger ms-1"><i class="bi
                                             bi-trash"></i></button>
                                         </td>
                                     </tr>
