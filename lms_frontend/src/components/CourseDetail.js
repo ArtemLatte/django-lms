@@ -1,21 +1,37 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import {Link} from 'react-router-dom'
-  
+import {Link} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+const baseUrl = 'http://127.0.0.1:8000/api'
 function CourseDetail() {
+    const [courseData,setcourseData]=useState([]);
+    const [chapterData,setchapterData]=useState([]);
+    const [teacherData,setteacherData]=useState([]);
     let {course_id}=useParams();
+    //Fetch courses when page load
+    useEffect(()=> {
+        try{
+        axios.get(baseUrl+'/course/'+course_id)
+        .then((res)=>{
+                setcourseData(res.data);
+                setchapterData(res.data.course_chapters);
+                setteacherData(res.data.teacher);
+        });
+        }catch(error){
+            console.log(error);
+        }
+    },[]);
+
     return (
         <div className="container mt-3">
             <div className="row">
                 <div className="col-4">
-                    <img src="../logo512.png" className="img-thumbnail" alt="..." />
+                    <img src={courseData.featured_img} className="img-thumbnail" alt={courseData.title} />
                 </div>
                 <div className="col-8">
-                    <h3>Course Title</h3>
-                    <p>Using a combination of grid and utility classes, cards can be made horizontal in a 
-                        mobile-friendly and responsive way. In the example below, we remove the grid gutters 
-                        with •g-e and use .col-md-* classes to make the card horizontal at the md breakpoint. 
-                        Further adjustments may be needed depending on your card content.</p>
-                    <p className="fw-bold">Course By: <Link to="/teacher-detail/1">Teacher 1</Link></p>
+                    <h3>{courseData.title}</h3>
+                    <p>{courseData.description}</p>
+                    <p className="fw-bold">Course By: <Link to="/teacher-detail/1">{teacherData.full_name}</Link></p>
                     <p className="fw-bold">Duration: 3 hours 30 minutes</p>
                     <p className="fw-bold">Total Enrolled: 450 students</p>
                     <p className="fw-bold">Rating: 4.5/5</p>
@@ -27,7 +43,8 @@ function CourseDetail() {
                         Course Videos
                     </h5 >
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Intorudction
+                    {chapterData .map((chapter,index) =>
+                        <li className="list-group-item">{chapter.title}
                             <span className="float-end">
                                 <span className="me-5">1 Hour 30 Minutes</span>
                                 <button className="btn btn-sm btn-danger" data-bs-toggle="modal" 
@@ -43,45 +60,15 @@ function CourseDetail() {
                                     </div>
                                     <div className="modal-body">
                                         <div class="ratio ratio-16x9">
-                                            <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen>
+                                            <iframe src={chapter.video} title={chapter.title} allowfullscreen>
                                             </iframe>
                                         </div>
                                     </div>
                                     </div>
                                 </div>
                             </div>
-                            {/* Video Modal Start*/}
                         </li>
-                        <li className="list-group-item">Intorudction
-                            <span className="float-end">
-                                <span className="me-5">1 Hour 30 Minutes</span>
-                                <button className="btn btn-sm btn-danger"><i className="bi-youtube"></i></button>
-                            </span>
-                        </li>
-                        <li className="list-group-item">Intorudction
-                            <span className="float-end">
-                                <span className="me-5">1 Hour 30 Minutes</span>
-                                <button className="btn btn-sm btn-danger"><i className="bi-youtube"></i></button>
-                            </span>
-                        </li>
-                        <li className="list-group-item">Intorudction
-                            <span className="float-end">
-                                <span className="me-5">1 Hour 30 Minutes</span>
-                                <button className="btn btn-sm btn-danger"><i className="bi-youtube"></i></button>
-                            </span>
-                        </li>
-                        <li className="list-group-item">Intorudction
-                            <span className="float-end">
-                                <span className="me-5">1 Hour 30 Minutes</span>
-                                <button className="btn btn-sm btn-danger"><i className="bi-youtube"></i></button>
-                            </span>
-                        </li>
-                        <li className="list-group-item">Intorudction
-                            <span className="float-end">
-                                <span className="me-5">1 Hour 30 Minutes</span>
-                                <button className="btn btn-sm btn-danger"><i className="bi-youtube"></i></button>
-                            </span>
-                        </li>
+                        )}
                     </ul>
             </div>
 

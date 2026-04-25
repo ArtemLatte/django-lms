@@ -47,6 +47,10 @@ class CourseList(generics.ListCreateAPIView):
             qs = models.Course.objects.all().order_by('-id')[:limit]
         return qs
 
+class CourseDetailView(generics.RetrieveAPIView):
+    queryset = models.Course.objects.all()
+    serializer_class = CourseSerializer
+
 #Specific teacher Course
 class TeacherCourseList(generics.ListCreateAPIView):
     serializer_class = CourseSerializer
