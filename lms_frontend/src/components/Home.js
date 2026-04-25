@@ -25,9 +25,9 @@ function Home() {
             {courseData && courseData.map((course, index)=>
             <div className='col-md-3 mb-4'>
                 <div className="card">
-                  <Link to={'/detail/${course.id}'}><img src={course.featured_img} className="card-img-top" alt={course.title} /></Link>
+                  <Link to={`/detail/${course.id}`}><img src={course.featured_img} className="card-img-top" alt={course.title} /></Link>
                   <div className="card-body">
-                    <h5 className="card-title"><Link to={'/detail/${course.id}'}>{course.title}</Link></h5>
+                    <h5 className="card-title"><Link to={`/detail/${course.id}`}>{course.title}</Link></h5>
                   </div>
                 </div>
             </div>
