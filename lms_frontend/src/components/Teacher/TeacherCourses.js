@@ -45,8 +45,9 @@ function TeacherCourses() {
                                         <td><img src={course.featured_img} width="80" className='rounded' alt={course.title} /></td>
                                         <td><Link to="/">123</Link></td>
                                         <td>
-                                            <button className="btn btn-danger btn-sm">Delete</button>
+                                            <Link class="btn btn-info btn-sm" to={'/edit-course/'+course.id}>Edit</Link>
                                             <Link class="btn btn-success btn-sm ms-2" to={'/add-chapter/'+course.id}>Add Chapter</Link>
+                                            <button className="btn btn-danger btn-sm ms-2">Delete</button>
                                         </td>
                                     </tr>
                                     )}
