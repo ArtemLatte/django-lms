@@ -40,6 +40,7 @@ function AddCourse(){
     }
 
     const formSubmit = () => {
+
         const _formData = new FormData();
         _formData.append('category', courseData.category);
         _formData.append('teacher', 1);
@@ -97,7 +98,7 @@ function AddCourse(){
                             <div className="mb-3">
                                     <label for="techs" className="form-label">Technologies</label>
                                     <textarea name="techs" onChange={handleChange} className="form-control" id="techs" placeholder="Php, Python, Javascript, HTML, CSS"
-                                    id="techs"></textarea>
+                                    ></textarea>
                             </div>
                             <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
                             </form>

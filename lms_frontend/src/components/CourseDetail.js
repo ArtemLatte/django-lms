@@ -2,11 +2,13 @@ import { useParams, useSearchParams } from "react-router-dom";
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+const siteUrl = 'http://127.0.0.1:8000/'
 const baseUrl = 'http://127.0.0.1:8000/api'
 function CourseDetail() {
     const [courseData,setcourseData]=useState([]);
     const [chapterData,setchapterData]=useState([]);
     const [teacherData,setteacherData]=useState([]);
+    const [relatedcourseData,setrelatedcourseData]=useState([]);
     let {course_id}=useParams();
     //Fetch courses when page load
     useEffect(()=> {
@@ -16,11 +18,14 @@ function CourseDetail() {
                 setcourseData(res.data);
                 setchapterData(res.data.course_chapters);
                 setteacherData(res.data.teacher);
+                setrelatedcourseData(JSON.parse(res.data.related_videos));
         });
         }catch(error){
             console.log(error);
         }
     },[]);
+
+    //console.log(relatedcourseData)
 
     return (
         <div className="container mt-3">
@@ -32,6 +37,7 @@ function CourseDetail() {
                     <h3>{courseData.title}</h3>
                     <p>{courseData.description}</p>
                     <p className="fw-bold">Course By: <Link to="/teacher-detail/1">{teacherData.full_name}</Link></p>
+                    <p className="fw-bold">Techs: {courseData.techs}</p>
                     <p className="fw-bold">Duration: 3 hours 30 minutes</p>
                     <p className="fw-bold">Total Enrolled: 450 students</p>
                     <p className="fw-bold">Rating: 4.5/5</p>
@@ -40,7 +46,7 @@ function CourseDetail() {
             { /* Course Videos */}
             <div className="card mt-4">
                     <h5 className="card-header">
-                        Course Videos
+                        In this course
                     </h5 >
                     <ul className="list-group list-group-flush">
                     {chapterData .map((chapter,index) =>
@@ -74,22 +80,17 @@ function CourseDetail() {
 
             <h3 className='pb-1 mb-4 mt-5'>Related Courses </h3>
             <div className='row mb-4'>
+            {relatedcourseData.map((rcourse,index) =>
                 <div className='col-md-3'>
                     <div className="card">
-                    <Link to='/detail/1'><img src="../logo512.png" className="card-img-top" alt="..." /></Link>
+                    <Link target="__blank" to={`/detail/${rcourse.pk}`}><img src={`${siteUrl}media/${rcourse.fields.featured_img}`} 
+                    className="card-img-top" alt={rcourse.fields.title} /></Link>
                     <div className="card-body">
-                        <h5 className="card-title"><Link to='/detail/1'>Course title</Link></h5>
+                        <h5 className="card-title"><Link to={`/detail/${rcourse.pk}`}>{rcourse.fields.title}</Link></h5>
                     </div>
                     </div>
                 </div>
-                <div className='col-md-3'>
-                    <div className="card">
-                    <a href='#'><img src="../logo512.png" className="card-img-top" alt="..." /></a>
-                    <div className="card-body">
-                        <h5 className="card-title"><a href='#'>Course title</a></h5>
-                    </div>
-                    </div>
-                </div>
+            )}
             </div>
         </div>
     );
