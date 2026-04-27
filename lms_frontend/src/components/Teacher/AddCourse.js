@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
@@ -16,7 +15,7 @@ function AddCourse(){
 
     useEffect(()=>{
         try{
-        axios.get(baseUrl+'/category')
+        axios.get(baseUrl+'/category/')
         .then((res)=>{
             setCats(res.data);
         });
@@ -39,7 +38,7 @@ function AddCourse(){
         });
     }
 
-    const formSubmit = () => {
+    const formSubmit=()=>{
         const _formData = new FormData();
         _formData.append('category', courseData.category);
         _formData.append('teacher', 1);
@@ -49,7 +48,7 @@ function AddCourse(){
         _formData.append('techs', courseData.techs);
 
         try {
-            axios.post(baseUrl + '/course/', _formData, {
+            axios.post(baseUrl+'/course/',_formData,{
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
@@ -78,13 +77,12 @@ function AddCourse(){
                             <div className="mb-3">
                                     <label for="title" className="form-label">Category</label>
                                     <select name="category" onChange={handleChange} class="form-control">
-                                        {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}
-                                        </option>})}
+                                        {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}</option>})}
                                     </select>
                             </div>
                             <div className="mb-3">
                                     <label for="title" className="form-label">Title</label>
-                                    <input name="title" type="text" onChange={handleChange} id="title" className="form-control" />
+                                    <input type="text" name="title" onChange={handleChange} id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
                                     <label for="description" className="form-label">Description</label>
