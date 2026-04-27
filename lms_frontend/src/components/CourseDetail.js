@@ -38,8 +38,8 @@ function CourseDetail() {
                     <p>{courseData.description}</p>
                     <p className="fw-bold">Course By: <Link to={`/teacher-detail/${teacherData.id}`}>{teacherData.full_name}</Link></p>
                     <p className="fw-bold">Techs:&nbsp;
-                        {techListData .map((tech,index) =>
-                            <Link to={`/category/${tech.trim()}`} className="badge badge-pill text-dark bg-warning ms-1">{tech}</Link>
+                        {techListData.map((tech,index) =>
+                            <Link to={`/category/${tech.trim()}`} className="badge badge-pill text-dark bg-warning ms-1">{tech.trim()}</Link>
                         )}
                     </p>
                     <p className="fw-bold">Duration: 3 hours 30 minutes</p>

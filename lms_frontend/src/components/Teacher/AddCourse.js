@@ -40,7 +40,6 @@ function AddCourse(){
     }
 
     const formSubmit = () => {
-
         const _formData = new FormData();
         _formData.append('category', courseData.category);
         _formData.append('teacher', 1);
@@ -50,7 +49,7 @@ function AddCourse(){
         _formData.append('techs', courseData.techs);
 
         try {
-            axios.post(baseUrl + "/course/", _formData, {
+            axios.post(baseUrl + '/course/', _formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
@@ -97,8 +96,7 @@ function AddCourse(){
                             </div>
                             <div className="mb-3">
                                     <label for="techs" className="form-label">Technologies</label>
-                                    <textarea name="techs" onChange={handleChange} className="form-control" id="techs" placeholder="Php, Python, Javascript, HTML, CSS"
-                                    ></textarea>
+                                    <textarea name="techs" onChange={handleChange} className="form-control" id="techs" placeholder="Php, Python, Javascript, HTML, CSS"></textarea>
                             </div>
                             <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
                             </form>

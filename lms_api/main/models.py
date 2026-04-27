@@ -14,6 +14,10 @@ class Teacher(models.Model):
     class Meta:
         verbose_name_plural = "1. Teachers"
 
+    def skill_list(self):
+        skill_list=self.skills.split(",")
+        return skill_list
+
 # Course Category model
 class CourseCategory(models.Model):
     title = models.CharField(max_length=150)
@@ -38,14 +42,14 @@ class Course(models.Model):
         verbose_name_plural = "3. Courses"
 
     def related_videos(self):
-        related_videos=Course.objects.filter(techs__icontains=self.techs)
+        related_videos=Course.objects.filter(techs__icontains=self.techs).exclude(id=self.id)
         return serializers.serialize('json', related_videos)
     
     def tech_list(self):
         tech_list=self.techs.split(",")
         return tech_list
 
-# Chapter model 
+# Chapter model
 class Chapter(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_chapters')
     title = models.CharField(max_length=150)

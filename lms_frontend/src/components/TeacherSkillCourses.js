@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 const baseUrl = 'http://127.0.0.1:8000/api'
 
-function CategoryCourses() {
+function TeacherSkillCourses() {
   const [courseData,setCourseData]=useState([]);
-  const {category_slug}=useParams();
+  const {skill_name, teacher_id}=useParams();
     //Fetch courses when page load
     useEffect(()=> {
         try{
-        axios.get(baseUrl+'/course/?category='+category_slug)
+        axios.get(baseUrl+'/course/?skill_name='+skill_name+'&teacher='+teacher_id)
         .then((res)=>{
                 setCourseData(res.data);
         });
@@ -21,7 +21,7 @@ function CategoryCourses() {
     return (
         <div className="container mt-3">
         {/* Latest Courses */}
-        <h3 className='pb-1 mb-4'>{category_slug}</h3>
+        <h3 className='pb-1 mb-4'>{skill_name}</h3>
         <div className='row mb-4'>
             {courseData && courseData.map((course, index)=>
             <div className='col-md-3 mb-4'>
@@ -33,10 +33,10 @@ function CategoryCourses() {
                 </div>
             </div>
             )}
-          
-            
+
+
         </div>
-        
+
         {/* End Latest Courses*/}
         {/* Pagination Start */}
         {/*<nav aria-label="Page navigation example mt-5">
@@ -53,4 +53,4 @@ function CategoryCourses() {
     );
 }
 
-export default CategoryCourses
+export default TeacherSkillCourses

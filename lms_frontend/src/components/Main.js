@@ -33,6 +33,7 @@ import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import PopularTeachers from './PopularTeachers';
 import CategoryCourses from './CategoryCourses';
+import TeacherSkillCourses from './TeacherSkillCourses';
 
 import About from './About';
 import Footer from './Footer';
@@ -74,6 +75,7 @@ function Main() {
             <Route path="/popular-courses" element={<PopularCourses />} />
             <Route path="/popular-teachers" element={<PopularTeachers />} />
             <Route path="/category/:category_slug" element={<CategoryCourses />} />
+            <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses />} />
         </Switch>
         <Footer />
     </div>
