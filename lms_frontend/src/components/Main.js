@@ -5,6 +5,7 @@ import TeacherDetail from './TeacherDetail';
 
 //User
 import Login from './User/Login';
+import Logout from './User/StudentLogout'
 import Register from './User/Register';
 import Dashboard from './User/Dashboard';
 import MyCourses from './User/MyCourses';
@@ -50,6 +51,7 @@ function Main() {
             <Route path="/about" element={<About />} />
             <Route path="/detail/:course_id" element={<CourseDetail />} />
             <Route path="/user-login" element={<Login />} />
+            <Route path="/user-logout" element={<Logout />} />
             <Route path="/user-register" element={<Register />} />
             <Route path="/user-dashboard" element={<Dashboard />} />
             <Route path="/my-courses" element={<MyCourses />} />
