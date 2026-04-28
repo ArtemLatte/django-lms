@@ -27,3 +27,8 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Student
         fields = ['id', 'full_name', 'email', 'password', 'username', 'interested_categories']
+
+class StudentCourseEnrollSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.StudentCourseEnrollment
+        fields = ['id', 'course', 'student', 'enrolled_time']

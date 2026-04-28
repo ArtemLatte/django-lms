@@ -6,7 +6,7 @@ const baseUrl = 'http://127.0.0.1:8000/api'
 function TeacherCourses() {
     const [courseData,setCourseData]=useState([]);
 
-    const teacherId=localStorage.getItem('teacherId')
+    const teacherId=localStorage.getItem('teacherId');
     //Fetch courses when page load
     useEffect(()=> {
         try{
