@@ -12,6 +12,7 @@ function EnrolledStudents() {
         try{
         axios.get(baseUrl+'/fetch-enrolled-students/'+course_id)
         .then((res)=>{
+                console.log(res.data)
                 setStudentData(res.data);
         });
         }catch(error){
@@ -35,17 +36,17 @@ function EnrolledStudents() {
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Username</th>
-                                        <th>Action</th>
+                                        <th>Interested Categories</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {StudentData.map((row,index) =>
                                     <tr>
-                                        <td><Link to={`/view-student/`+row.student.id}>{row.student.full_name}</Link></td>
+                                        <td>{row.student.full_name}</td>
                                         <td>{row.student.email}</td>
                                         <td>{row.student.username}</td>
                                         <td>
-                                            <Link class="btn btn-info btn-sm" to={`/view-student/`+row.student.id}>View</Link>
+                                            {row.student.interested_categories}
                                         </td>
                                     </tr>
                                     )}
