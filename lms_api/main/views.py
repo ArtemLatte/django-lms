@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer
+from django.db.models import Q
 from . import models
 from rest_framework.response import Response
 from rest_framework import generics
@@ -57,6 +58,17 @@ class CourseList(generics.ListCreateAPIView):
             teacher = self.request.GET['teacher']
             teacher = models.Teacher.objects.filter(id=teacher).first()
             qs = models.Course.objects.filter(techs__icontains=skill_name, teacher=teacher)
+        elif 'studentId' in self.kwargs:
+            student_id=self.kwargs['studentId']
+            student=models.Student.objects.get(pk=student_id)
+            print(student.interested_categories)
+            queries = [Q(techs__iendswith=value) for value in student.interested_categories]
+            query = queries.pop()
+            for item in queries:
+                query |= item
+            qs = models.Course.objects.filter(query)
+            return qs
+
         return qs
 
 class CourseDetailView(generics.RetrieveAPIView):
@@ -144,7 +156,7 @@ class EnrolledStudentList(generics.ListAPIView):
             student_id=self.kwargs['student_id']
             student=models.Student.objects.get(pk=student_id)
             return models.StudentCourseEnrollment.objects.filter(student=student).distinct()
-    
+
 class CourseRatingList(generics.ListCreateAPIView):
     serializer_class = CourseRatingSerializer
 
