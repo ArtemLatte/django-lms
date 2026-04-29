@@ -10,9 +10,8 @@ function RecommendedCourses() {
     //Fetch courses when page load
     useEffect(()=> {
         try{
-        axios.get(baseUrl+'/fetch-recommended-courses/' + studentId)
+        axios.get(baseUrl+'/fetch-recommended-courses/'+studentId)
         .then((res)=>{
-                console.log(res.data)
                 setcourseData(res.data);
         });
         }catch(error){
@@ -39,8 +38,8 @@ function RecommendedCourses() {
                                 <tbody>
                                     {courseData.map((row,index) =>
                                     <tr>
-                                        <td><Link to={`/detail/`+row.course.id}>{row.course.title}</Link></td>
-                                        <td>{row.course.techs}</td>
+                                        <td><Link to={`/detail/`+row.id}>{row.title}</Link></td>
+                                        <td>{row.techs}</td>
                                     </tr>
                                     )}
                                 </tbody>
