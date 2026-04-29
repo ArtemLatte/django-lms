@@ -1,13 +1,13 @@
 import {Link, useParams} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import { useState, useEffect } from 'react';
-import axios from 'axios'
-const baseUrl = 'http://127.0.0.1:8000/api'
+import axios from 'axios';
+const baseUrl = 'http://127.0.0.1:8000/api';
 function UserList() {
     const [StudentData,setStudentData]=useState([]);
 
     const teacherId=localStorage.getItem('teacherId');
-    //Fetch courses when page load
+    //Fetch students when page load
     useEffect(()=> {
         try{
         axios.get(baseUrl+'/fetch-all-enrolled-students/' + teacherId)
