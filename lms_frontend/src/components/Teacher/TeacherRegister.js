@@ -51,6 +51,7 @@ function TeacherRegister(){
 
     };
     // End
+
     useEffect(()=>{
         document.title='Teacher Register';
     });

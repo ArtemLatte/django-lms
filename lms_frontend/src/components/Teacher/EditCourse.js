@@ -81,17 +81,17 @@ function EditCourse(){
                 }
             })
             .then((res) => {
-            if(res.status==200){
-                Swal.fire({
-                    title: 'Data has been updated',
-                    icon: 'success',
-                    toast:true,
-                    timer:3000,
-                    position:'top-right',
-                    timerProgressBar:true,
-                    showConfirmButton:false
-                });
-            }
+                if(res.status==200){
+                    Swal.fire({
+                        title: 'Data has been updated',
+                        icon: 'success',
+                        toast:true,
+                        timer:3000,
+                        position:'top-right',
+                        timerProgressBar:true,
+                        showConfirmButton:false
+                    });
+                }
             });
         } catch (error) {
             console.log(error);
