@@ -13,6 +13,7 @@ function AddChapter(){
         video:'',
         remarks:''
     });
+    const [videoDuration,setvideoDuration]=useState();
 
     const handleChange=(event)=>{
         setChapterData({

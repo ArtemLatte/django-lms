@@ -5,7 +5,13 @@ class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
         fields = ['id', 'full_name', 'detail', 'email', 'password', 'qualification', 'mobile_no', 'skills', 'teacher_courses', 'skill_list']
-        depth=1
+        
+    def init(self, *args, **kwargs):
+        super(StudentCourseEnrollSerializer, self).init(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,7 +21,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Course
-        fields = ['id', 'category', 'teacher', 'title', 'description', 'featured_img', 'techs', 'course_chapters', 'related_videos', 'tech_list', 'total_enrolled_students']
+        fields = ['id', 'category', 'teacher', 'title', 'description', 'featured_img', 'techs', 'course_chapters', 'related_videos', 'tech_list', 'total_enrolled_students', 'course_rating']
         depth=1
 
 class ChapterSerializer(serializers.ModelSerializer):
@@ -32,4 +38,22 @@ class StudentCourseEnrollSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.StudentCourseEnrollment
         fields = ['id', 'course', 'student', 'enrolled_time']
-        depth=1
+    
+    def init(self, *args, **kwargs):
+        super(StudentCourseEnrollSerializer, self).init(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1
+
+class CourseRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CourseRating
+        fields = ['id', 'course', 'student', 'rating', 'reviews', 'review_time']
+        
+    def init(self, *args, **kwargs):
+        super(StudentCourseEnrollSerializer, self).init(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1
