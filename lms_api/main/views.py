@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer
+from .serializers import TeacherSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer
 from django.db.models import Q
 from . import models
 from rest_framework.response import Response
@@ -214,3 +214,14 @@ def teacher_change_password(request, teacher_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+class AssignmentList(generics.ListCreateAPIView):
+    queryset = models.StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+
+    def get_queryset(self):
+        student_id=self.kwargs['student_id']
+        teacher_id=self.kwargs['teacher_id']
+        student=models.Student.objects.get(pk=student_id)
+        teacher=models.Teacher.objects.get(pk=teacher_id)
+        return models.StudentAssignment.objects.filter(student=student, teacher=teacher)
