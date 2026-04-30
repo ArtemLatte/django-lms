@@ -11,6 +11,7 @@ import Dashboard from './User/Dashboard';
 import MyCourses from './User/MyCourses';
 import FavoriteCourses from './User/FavoriteCourses';
 import RecommendedCourses from './User/RecommendedCourses';
+import StudentAssignments from './User/StudentAssignments';
 import ProfileSetting from './User/ProfileSetting';
 import ChangePassword from './User/ChangePassword';
 
@@ -73,6 +74,7 @@ function Main() {
             <Route path="/add-chapter/:course_id" element={<AddChapter />} />
             <Route path="/add-assignment/:student_id/:teacher_id" element={<AddAssignment />} />
             <Route path="/show-assignment/:student_id/:teacher_id" element={<ShowAssignment />} />
+            <Route path="/my-assignments/" element={<StudentAssignments />} />
             <Route path="/teacher-users" element={<UserList />} />
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
