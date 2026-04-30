@@ -23,6 +23,7 @@ import EnrolledStudents from './Teacher/EnrolledStudents';
 import UserList from './Teacher/UserList';
 import AddAssignment from './Teacher/AddAssignment';
 import AddCourse from './Teacher/AddCourse';
+import ShowAssignment from './Teacher/ShowAssignment';
 import EditCourse from './Teacher/EditCourse';
 import AddChapter from './Teacher/AddChapter';
 import AllChapters from './Teacher/CourseChapters';
@@ -71,6 +72,7 @@ function Main() {
             <Route path="/edit-course/:course_id" element={<EditCourse />} />
             <Route path="/add-chapter/:course_id" element={<AddChapter />} />
             <Route path="/add-assignment/:student_id/:teacher_id" element={<AddAssignment />} />
+            <Route path="/show-assignment/:student_id/:teacher_id" element={<ShowAssignment />} />
             <Route path="/teacher-users" element={<UserList />} />
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
