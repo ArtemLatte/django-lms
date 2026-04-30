@@ -18,7 +18,7 @@ function AllCourses() {
     return (
         <div className="container mt-3">
         {/* Latest Courses */}
-        <h3 className='pb-1 mb-4'>Latest Courses </h3>
+        <h3 className='pb-1 mb-4'>Последние курсы</h3>
         <div className='row mb-4'>
             {courseData && courseData.map((course, index)=>
             <div className='col-md-3 mb-4'>

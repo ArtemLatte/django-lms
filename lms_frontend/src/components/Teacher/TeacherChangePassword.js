@@ -59,16 +59,16 @@ function TeacherChangePassword(){
                 </aside>
                 <section className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'> Profile Settings</h5>
+                        <h5 className='card-header'>Настройки профиля | Смена пароля</h5>
                         <div className='card-body'>
                             <div class="mb-3 row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Новый пароль</label>
                                 <div class="col-sm-10">
                                 <input type="text" name="password" value={teacherData.password} onChange={handleChange} class="form-control" id="inputPassword"/>
                                 </div>
                             </div>
                             <hr />
-                            <button className='btn btn-primary' onClick={submitForm}>Update</button>
+                            <button className='btn btn-primary' onClick={submitForm}>Сохранить</button>
                         </div>
                     </div>
                     

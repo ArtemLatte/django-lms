@@ -65,15 +65,15 @@ function CourseChapters(){
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">All Chapters ({totalResult}) <Link className="btn btn-success btn-sm float-end" to={'/add-chapter/'+course_id}>Add Chapter</Link></h5>
+                        <h5 className="card-header">Модули (всего модулей: {totalResult}) <Link className="btn btn-success btn-sm float-end" to={'/add-chapter/'+course_id}>Добавить модуль</Link></h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Video</th>
-                                        <th>Remarks</th>
-                                        <th>Action</th>
+                                        <th>Название модуля</th>
+                                        <th>Обучающий материал</th>
+                                        <th>Замечания</th>
+                                        <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>

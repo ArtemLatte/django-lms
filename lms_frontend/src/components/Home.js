@@ -20,7 +20,7 @@ function Home() {
   return (
     <div className='container mt-4'>
         {/* Latest Courses */}
-        <h3 className='pb-1 mb-4'>Latest Courses <Link to='/all-courses' class='float-end'>See All</Link></h3>
+        <h3 className='pb-1 mb-4'>Последние курсы <Link to='/all-courses' class='float-end'>Смотреть все</Link></h3>
         <div className='row mb-4'>
             {courseData && courseData.map((course, index)=>
             <div className='col-md-3 mb-4'>
@@ -35,7 +35,7 @@ function Home() {
         </div>
         {/* End Latest Courses*/}
         {/* Popular Courses */}
-        <h3 className='pb-1 mb-4 mt-5'>Popular Courses <Link to='/popular-courses' class='float-end'>See All</Link></h3>
+        <h3 className='pb-1 mb-4 mt-5'>Популярные курсы <Link to='/popular-courses' class='float-end'>Смотреть все</Link></h3>
         <div className='row mb-4'>
             <div className='col-md-3'>
                 <div className="card">
@@ -96,7 +96,7 @@ function Home() {
         </div>
         {/* End Popular Courses*/}
         {/* Popular Teachers */}
-        <h3 className='pb-1 mb-4 mt-5'>Popular Teachers <Link to='/popular-teachers' class='float-end'>See All</Link></h3>
+        <h3 className='pb-1 mb-4 mt-5'>Лучшие учителя <Link to='/popular-teachers' class='float-end'>Смотреть все</Link></h3>
         <div className='row mb-4'>
             <div className='col-md-3'>
                 <div className="card">
@@ -153,7 +153,7 @@ function Home() {
         </div>
         {/* End Popular Teachers*/}
         {/* Student Testimonial */}
-        <h3 className='pb-1 mb-4 mt-5'>Student Testimonial</h3>
+        <h3 className='pb-1 mb-4 mt-5'>Отзывы студентов</h3>
         <div id="carouselExampleIndicators" className="carousel slide bg-dark text-white py-5">
           <div className="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

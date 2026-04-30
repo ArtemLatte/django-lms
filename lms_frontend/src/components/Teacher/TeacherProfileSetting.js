@@ -112,22 +112,22 @@ function TeacherProfileSetting(){
                 </aside>
                 <section className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'> Profile Settings</h5>
+                        <h5 className='card-header'>Настройки профиля | Изменить профиль</h5>
                       <div className='card-body'>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Full Name</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Имя</label>
                                 <div class="col-sm-10">
                                 <input type="text" name="full_name" value={teacherData.full_name} onChange={handleChange} class="form-control" id="staticEmail"/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">E-mail</label>
                                 <div class="col-sm-10">
                                 <input type="email" name="email" value={teacherData.email} onChange={handleChange} class="form-control" id="staticEmail"/>
                                 </div>
                             </div>
                             <div className="mb-3 row">
-                                    <label for="video" class="col-sm-2 col-form-label">Profile Image</label>
+                                    <label for="video" class="col-sm-2 col-form-label">Фото профиля</label>
                                     <div class="col-sm-10">
                                     <input name="p_img" id="video" type="file" onChange={handleFileChange} className="form-control" />
                                     {teacherData.profile_img &&
@@ -136,21 +136,21 @@ function TeacherProfileSetting(){
                                     </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Skills</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Умения | Навыки</label>
                                 <div class="col-sm-10">
                                 <textarea className='form-control' name="skills" value={teacherData.skills} onChange={handleChange}></textarea>
-                                <div id='emailHelp' class='form-text'>Php, Python, JavaScript, etc</div>
+                                <div id='emailHelp' class='form-text'>Php, Python, JavaScript, и др.</div>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Qualification</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Образование</label>
                                 <div class="col-sm-10">
                                 <textarea className='form-control' name="qualification" value={teacherData.qualification} onChange={handleChange}></textarea>
-                                <div id='emailHelp' class='form-text'>BCA | MCA</div>
+                                <div id='emailHelp' class='form-text'>Бакалавр, Магистр и т.д.</div>
                                 </div>
                             </div>
                             <hr />
-                            <button className='btn btn-primary' onClick={submitForm}>Update</button>
+                            <button className='btn btn-primary' onClick={submitForm}>Сохранить</button>
                         </div>
                     </div>
                 </section>

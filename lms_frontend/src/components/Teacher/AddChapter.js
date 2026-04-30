@@ -72,28 +72,28 @@ function AddChapter(){
                 </aside>
                 <div className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'> Add Chapter</h5>
+                        <h5 className='card-header'>Добавить модуль</h5>
                         <div className='card-body'>
                             <form>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Title</label>
+                                    <label for="title" className="form-label">Название</label>
                                     <input type="text" onChange={handleChange} name='title' id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="description" className="form-label">Description</label>
+                                    <label for="description" className="form-label">Описание</label>
                                     <textarea className="form-control" onChange={handleChange} name='description' id="description"></textarea>
                             </div>
                             <div className="mb-3">
-                                    <label for="video" className="form-label">Video</label>
+                                    <label for="video" className="form-label">Видео</label>
                                     <input type="file" id="video" onChange={handleFileChange} name='video' className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="techs" className="form-label">Remarks</label>
+                                    <label for="techs" className="form-label">Замечания</label>
                                     <textarea onChange={handleChange} name='remarks' className="form-control"
-                                    placeholder="This is video is focused on basic intorduction" 
+                                    placeholder="Это видео посвящено основам для введения студента в курс дела"
                                     id="techs"></textarea>
                             </div>
-                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
+                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Добавить</button>
                             </form>
                         </div>
                     </div>

@@ -59,30 +59,30 @@ function Register(){
                     {studentData.status=='success' && <p class="text-success">Thanks for your registration</p>}
                     {studentData.status=='error' && <p class="text-danger">Something wrong happened!!</p>}
                     <div className="card">
-                        <h5 className="card-header">User Register</h5>
+                        <h5 className="card-header">Регистрация | Студент</h5>
                         <div className="card-body">
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Full Name</label>
+                                <label for="exampleInputEmail1" className="form-label">Имя</label>
                                 <input type="text" name='full_name' onChange={handleChange} className="form-control" />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Email</label>
+                                <label for="exampleInputEmail1" className="form-label">E-mail</label>
                                 <input type="email" name='email' onChange={handleChange} className="form-control" />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Username</label>
+                                <label for="exampleInputEmail1" className="form-label">Имя пользователя (псевдоним)</label>
                                 <input type="text" name='username' onChange={handleChange} className="form-control" />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputPassword1" className="form-label">Password</label>
+                                <label for="exampleInputPassword1" className="form-label">Пароль</label>
                                 <input type="password" name='password' onChange={handleChange} className="form-control" id="exampleInputPassword1" />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Interests</label>
+                                <label for="exampleInputEmail1" className="form-label">Интересы</label>
                                 <textarea name='interested_categories' onChange={handleChange} className="form-control"></textarea>
-                                <div id="emailHelp" class="form-text">Php, Python, Javascript, etc</div>
+                                <div id="emailHelp" class="form-text">Php, Python, Javascript, и тд.</div>
                             </div>
-                            <button type="submit" onClick={submitForm} className="btn btn-primary">Register</button>
+                            <button type="submit" onClick={submitForm} className="btn btn-primary">Зарегистрироваться</button>
                         </div>
                     </div>
                 </div>

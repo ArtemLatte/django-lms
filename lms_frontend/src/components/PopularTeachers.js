@@ -14,7 +14,7 @@ function PopularTeachers() {
     return (
         <div className="container mt-3">
         {/* Latest Courses */}
-        <h3 className='pb-1 mb-4'>Popular Teachers </h3>
+        <h3 className='pb-1 mb-4'>Лучшие учителя</h3>
         <div className='row mb-4'>
             <div className='col-md-3 mb-4'>
                 <div className="card">

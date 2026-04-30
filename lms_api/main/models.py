@@ -97,6 +97,26 @@ class Student(models.Model):
     class Meta:
         verbose_name_plural = "5. Students"
 
+    # Total Enrolled Courses
+    def enrolled_courses(self):
+        enrolled_courses=StudentCourseEnrollment.objects.filter(student=self).count()
+        return enrolled_courses
+
+    # Total Favorite Courses
+    def favorite_courses(self):
+        favorite_courses=StudentFavoriteCourse.objects.filter(student=self).count()
+        return favorite_courses
+
+    # Completed assignments
+    def complete_assignments(self):
+        complete_assignments=StudentAssignment.objects.filter(student=self,student_status=True).count()
+        return complete_assignments
+
+    # Pending assignments
+    def pending_assignments(self):
+        pending_assignments=StudentAssignment.objects.filter(student=self,student_status=False).count()
+        return pending_assignments
+
     def __str__(self):
         return self.full_name
 

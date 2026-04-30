@@ -27,15 +27,15 @@ function TeacherCourses() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">My Courses</h5>
+                        <h5 className="card-header">Мои курсы</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Total Enrolled</th>
-                                        <th>Action</th>
+                                        <th>Название</th>
+                                        <th>Баннер</th>
+                                        <th>Кол. студентов</th>
+                                        <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,19 +45,19 @@ function TeacherCourses() {
                                             <Link to={`/all-chapters/`+course.id}>{course.title}</Link>
                                             <hr />
                                             {course.course_rating && 
-                                                <span>Rating: {course.course_rating}/5</span>
+                                                <span>Рейтинг: {course.course_rating}/5</span>
                                             }
                                             {!course.course_rating && 
-                                                <span>Rating: 0/5</span>
+                                                <span>Рейтинг: 0/5</span>
                                             }
                                             
                                         </td>
                                         <td><img src={course.featured_img} width="80" className='rounded' alt={course.title} /></td>
                                         <td><Link to={`/enrolled-students/`+course.id}>{course.total_enrolled_students}</Link></td>
                                         <td>
-                                            <Link class="btn btn-info btn-sm" to={`/edit-course/`+course.id}>Edit</Link>
-                                            <Link class="btn btn-success btn-sm ms-2" to={`/add-chapter/`+course.id}>Add Chapter</Link>
-                                            <button className="btn btn-danger btn-sm ms-2">Delete</button>
+                                            <Link class="btn btn-info btn-sm" to={`/edit-course/`+course.id}>Изменить</Link>
+                                            <Link class="btn btn-success btn-sm ms-2" to={`/add-chapter/`+course.id}>Добавить модуль</Link>
+                                            <button className="btn btn-danger btn-sm ms-2">Удалить</button>
                                         </td>
                                     </tr>
                                     )}

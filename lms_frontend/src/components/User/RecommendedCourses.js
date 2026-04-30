@@ -26,13 +26,13 @@ function RecommendedCourses() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Recommended Courses</h5>
+                        <h5 className="card-header">Рекомендуемые курсы</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Technologies</th>
+                                        <th>Название</th>
+                                        <th>Технологии</th>
                                     </tr>
                                 </thead>
                                 <tbody>

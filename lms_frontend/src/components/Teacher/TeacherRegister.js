@@ -68,35 +68,35 @@ function TeacherRegister(){
                     {teacherData.status=='success' && <p class="text-success">Thanks for your registration</p>}
                     {teacherData.status=='error' && <p class="text-danger">Something wrong happened!!</p>}
                     <div className="card">
-                        <h5 className="card-header">Teacher Register</h5>
+                        <h5 className="card-header">Регистрация | Учитель</h5>
                         <div className="card-body">
                             {/* <form> */}
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Full Name</label>
+                                    <label for="exampleInputEmail1" className="form-label">Имя</label>
                                     <input value={teacherData.full_name} onChange={handleChange} name="full_name" type="text" className="form-control" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Email</label>
+                                    <label for="exampleInputEmail1" className="form-label">E-mail</label>
                                     <input value={teacherData.email} onChange={handleChange} name="email" type="email" className="form-control" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputPassword1" className="form-label">Password</label>
+                                    <label for="exampleInputPassword1" className="form-label">Пароль</label>
                                     <input value={teacherData.password} onChange={handleChange} name="password" type="password" className="form-control" id="exampleInputPassword1" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Qualification</label>
+                                    <label for="exampleInputEmail1" className="form-label">Образование</label>
                                     <input value={teacherData.qualification} onChange={handleChange} name="qualification" type="text" className="form-control" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Mobile Number</label>
+                                    <label for="exampleInputEmail1" className="form-label">Номер телефона</label>
                                     <input value={teacherData.mobile_no} onChange={handleChange} name="mobile_no" type="number" className="form-control" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Skills</label>
+                                    <label for="exampleInputEmail1" className="form-label">Умения | Навыки</label>
                                     <textarea value={teacherData.skills} onChange={handleChange} name="skills" className="form-control"></textarea>
-                                    <div id="emailHelp" class="form-text">Php, Python, Javascript, etc</div>
+                                    <div id="emailHelp" class="form-text">Php, Python, Javascript, и др.</div>
                                 </div>
-                                <button onClick={submitForm} type="submit" className="btn btn-primary">Register</button>
+                                <button onClick={submitForm} type="submit" className="btn btn-primary">Зарегистрироваться</button>
                             {/* </form> */}
                         </div>
                     </div>

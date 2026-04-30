@@ -28,15 +28,15 @@ function EnrolledStudents() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Enrolled Student List</h5>
+                        <h5 className="card-header">Список зачисленных студентов</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Username</th>
-                                        <th>Interested Categories</th>
+                                        <th>Имя</th>
+                                        <th>E-mail</th>
+                                        <th>Имя пользователя (псевдоним)</th>
+                                        <th>Заинтересованные категории</th>
                                     </tr>
                                 </thead>
                                 <tbody>

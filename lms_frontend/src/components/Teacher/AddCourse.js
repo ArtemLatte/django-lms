@@ -72,32 +72,32 @@ function AddCourse(){
                 </aside>
                 <div className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'> Add Course</h5>
+                        <h5 className='card-header'>Добавить курс</h5>
                         <div className='card-body'>
                             <form>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Category</label>
+                                    <label for="title" className="form-label">Категория</label>
                                     <select name="category" onChange={handleChange} class="form-control">
                                         {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}</option>})}
                                     </select>
                             </div>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Title</label>
+                                    <label for="title" className="form-label">Название</label>
                                     <input type="text" name="title" onChange={handleChange} id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="description" className="form-label">Description</label>
+                                    <label for="description" className="form-label">Описание</label>
                                     <textarea name="description" onChange={handleChange} className="form-control" id="description"></textarea>
                             </div>
                             <div className="mb-3">
-                                    <label for="video" className="form-label">Featured Image</label>
+                                    <label for="video" className="form-label">Изображение</label>
                                     <input name="f_img" id="video" type="file" onChange={handleFileChange} className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="techs" className="form-label">Technologies</label>
+                                    <label for="techs" className="form-label">Технологии</label>
                                     <textarea name="techs" onChange={handleChange} className="form-control" id="techs" placeholder="Php, Python, Javascript, HTML, CSS"></textarea>
                             </div>
-                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
+                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Добавить</button>
                             </form>
                         </div>
                     </div>

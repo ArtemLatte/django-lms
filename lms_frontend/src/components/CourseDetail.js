@@ -229,36 +229,36 @@ function CourseDetail() {
                 <div className="col-8">
                     <h3>{courseData.title}</h3>
                     <p>{courseData.description}</p>
-                    <p className="fw-bold">Course By: <Link to={`/teacher-detail/${teacherData.id}`}>{teacherData.full_name}</Link></p>
-                    <p className="fw-bold">Techs:&nbsp;
+                    <p className="fw-bold">Автор: <Link to={`/teacher-detail/${teacherData.id}`}>{teacherData.full_name}</Link></p>
+                    <p className="fw-bold">Технологии:&nbsp;
                         {techListData.map((tech,index) =>
                             <Link to={`/category/${tech.trim()}`} className="badge badge-pill text-dark bg-warning ms-1">{tech.trim()}</Link>
                         )}
                     </p>
-                    <p className="fw-bold">Duration: 3 hours 30 minutes</p>
-                    <p className="fw-bold">Total Enrolled: {courseData.total_enrolled_students} Student(s)</p>
+                    <p className="fw-bold">Продолжительность: 3 Часа 30 Минут</p>
+                    <p className="fw-bold">Всего студентов: {courseData.total_enrolled_students} Студент(ов)</p>
                     <p className="fw-bold">
-                        Rating: {AvgRating}/5
+                        Рейтинг: {AvgRating}/5
                         { enrollStatus === 'success' && userLoginStatus === 'success' && 
                         <>
                         {ratingStatus!='success' &&
-                            <button className="btn btn-success btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#ratingModal"> Rating</button>
+                            <button className="btn btn-success btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#ratingModal">Оценить курс</button>
                         }
                         {ratingStatus=='success' &&
-                            <small className="badge bg-info text-dark ms-2">You already rated this course</small>
+                            <small className="badge bg-info text-dark ms-2">Вы уже записаны на этот курс</small>
                         }
 
                         <div className="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div className="modal-dialog modal-lg">
                                 <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Rate for {courseData.title}</h5>
+                                    <h5 className="modal-title" id="exampleModalLabel">Оценить курс {courseData.title}</h5>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div className="modal-body">
                                     <form>
                                         <div className="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Rating</label>
+                                            <label for="exampleInputEmail1" class="form-label">Рейтинг</label>
                                             <select onChange={handleChange} className="form-control" name="rating">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -268,10 +268,10 @@ function CourseDetail() {
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label">Review</label>
+                                            <label for="exampleInputPassword1" class="form-label">Комментарий</label>
                                             <textarea onChange={handleChange} className="form-control" name="reviews" rows="10"></textarea>
                                         </div>
-                                        <button type="button" onClick={formSubmit} class="btn btn-primary">Submit</button>
+                                        <button type="button" onClick={formSubmit} class="btn btn-primary">Сохранить</button>
                                         </form>
                                 </div>
                             </div>
@@ -281,19 +281,19 @@ function CourseDetail() {
                         }
                     </p>
                     { enrollStatus === 'success' && userLoginStatus === 'success' &&
-                        <p><span>You are already enrolled in this course</span></p>
+                        <p><span>Вы уже записаны на этот курс</span></p>
                     }
                     { userLoginStatus === 'success' && enrollStatus !== 'success' &&
-                        <p><button onClick={enrollCourse} type='button' className='btn btn-success'>Enroll in this course</button></p>
+                        <p><button onClick={enrollCourse} type='button' className='btn btn-success'>Запишитесь на этот курс</button></p>
                     }
                     { userLoginStatus === 'success' && favoriteStatus !== 'success' &&
-                        <p><button onClick={markAsFavorite} title="Add in your favorite course list" type='button' className='btn btn-outline-danger'><i className="bi bi-heart-fill"></i></button></p>
+                        <p><button onClick={markAsFavorite} title="Добавить в любимые курсы" type='button' className='btn btn-outline-danger'><i className="bi bi-heart-fill"></i></button></p>
                     }
                     { userLoginStatus === 'success' && favoriteStatus === 'success' &&
-                        <p><button onClick={removeFavorite} title="Remove from your favorite course list" type='button' className='btn btn-danger'><i className="bi bi-heart-fill"></i></button></p>
+                        <p><button onClick={removeFavorite} title="Удалить из любимых курсов" type='button' className='btn btn-danger'><i className="bi bi-heart-fill"></i></button></p>
                     }
                     { userLoginStatus !== 'success' &&
-                        <p><Link to='/user-login'>Please login to enroll in this course</Link></p>
+                        <p><Link to='/user-login'>Авторизируйтесь для того, чтобы записаться на курс</Link></p>
                     }
                 </div>
             </div>
@@ -301,13 +301,13 @@ function CourseDetail() {
             { enrollStatus === 'success' && userLoginStatus === 'success' &&
             <div className="card mt-4">
                     <h5 className="card-header">
-                        In this course
+                        В этом курсе
                     </h5 >
                     <ul className="list-group list-group-flush">
                     {chapterData .map((chapter,index) =>
                         <li className="list-group-item">{chapter.title}
                             <span className="float-end">
-                                <span className="me-5">1 Hour 30 Minutes</span>
+                                <span className="me-5">1 Час 30 Минут</span>
                                 <button className="btn btn-sm btn-danger" data-bs-toggle="modal" 
                                 data-bs-target="#videoModal1"><i className="bi-youtube"></i></button>
                             </span>
@@ -316,7 +316,7 @@ function CourseDetail() {
                                 <div className="modal-dialog modal-xl">
                                     <div className="modal-content">
                                     <div className="modal-header">
-                                        <h5 className="modal-title" id="exampleModalLabel">Video 1</h5>
+                                        <h5 className="modal-title" id="exampleModalLabel">Видео 1</h5>
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body">
@@ -335,7 +335,7 @@ function CourseDetail() {
             </div>
 }
 
-            <h3 className='pb-1 mb-4 mt-5'>Related Courses </h3>
+            <h3 className='pb-1 mb-4 mt-5'>Похожие курсы</h3>
             <div className='row mb-4'>
             {relatedcourseData.map((rcourse,index) =>
                 <div className='col-md-3'>

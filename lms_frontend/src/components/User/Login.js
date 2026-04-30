@@ -28,7 +28,7 @@ function Login(){
                         if(res.data.bool==true){
                             localStorage.setItem('studentLoginStatus',true);
                             localStorage.setItem('studentId',res.data.student_id);
-                            window.location.href='/student-dashboard';
+                            window.location.href='/user-dashboard';
                         }else{
                             seterrorMsg('Invalid Email Or Password!!')
                         }
@@ -41,7 +41,7 @@ function Login(){
 
     const studentLoginStatus=localStorage.getItem('studentLoginStatus')
     if(studentLoginStatus=='true'){
-        window.location.href='/student-dashboard';
+        window.location.href='/user-dashboard';
     }
 
     useEffect(()=> {
@@ -53,16 +53,16 @@ function Login(){
             <div className="row">
                 <div className="col-6 offset-3">
                     <div className="card">
-                        <h5 className="card-header">User Login</h5>
+                        <h5 className="card-header">Авторизация | Студент</h5>
                         <div className="card-body">
                             {errorMsg && <p className='text-danger'>{errorMsg}</p>}
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Username</label>
+                                <label for="exampleInputEmail1" className="form-label">E-mail</label>
                                 <input type="email" name="email" value={studentLoginData.email} 
                                 onChange={handleChange} className="form-control" />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputPassword1" className="form-label">Password</label>
+                                <label for="exampleInputPassword1" className="form-label">Пароль</label>
                                 <input type="password" name="password" value={studentLoginData.password} 
                                 onChange={handleChange} className="form-control" id="exampleInputPassword1" />
                             </div>
@@ -70,7 +70,7 @@ function Login(){
                                 <input type="checkbox" onChange={handleChange} className="form-check-input" id="exampleCheck1" />
                                 <label className="form-check-label" for="exampleCheck1">Remember Me</label>
                             </div> */}
-                            <button type="submit" onClick={submitForm} className="btn btn-primary">Login</button>
+                            <button type="submit" onClick={submitForm} className="btn btn-primary">Войти</button>
                         </div>
                     </div>
                 </div>

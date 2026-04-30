@@ -28,15 +28,15 @@ function UserList() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">All Student List</h5>
+                        <h5 className="card-header">Список всех студентов</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Username</th>
-                                        <th>Interested Categories</th>
+                                        <th>Имя</th>
+                                        <th>E-mail</th>
+                                        <th>Имя пользователя</th>
+                                        <th>Заинтересованные категории</th>
                                         <th>Assignment</th>
                                     </tr>
                                 </thead>

@@ -92,19 +92,19 @@ function EditChapter(){
                 </aside>
                 <div className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'> Update Chapter</h5>
+                        <h5 className='card-header'>Изменить модуль</h5>
                         <div className='card-body'>
                             <form>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Title</label>
+                                    <label for="title" className="form-label">Название</label>
                                     <input type="text" value={chapterData.title} onChange={handleChange} name='title' id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="description" className="form-label">Description</label>
+                                    <label for="description" className="form-label">Описание</label>
                                     <textarea value={chapterData.description} className="form-control" onChange={handleChange} name='description' id="description"></textarea>
                             </div>
                             <div className="mb-3">
-                                    <label for="video" className="form-label">Video</label>
+                                    <label for="video" className="form-label">Видео</label>
                                     <input type="file" id="video" onChange={handleFileChange} name='video' className="form-control" />
                                     {chapterData.prev_video &&
                                     <video controls width="100%" height="240" className="mt-2">
@@ -113,12 +113,12 @@ function EditChapter(){
                                     }
                             </div>
                             <div className="mb-3">
-                                    <label for="techs" className="form-label">Remarks</label>
+                                    <label for="techs" className="form-label">Замечания</label>
                                     <textarea onChange={handleChange} value={chapterData.remarks} name='remarks' className="form-control"
-                                    placeholder="This is video is focused on basic intorduction"
+                                    placeholder="Это видео посвящено основам для введения студента в курс дела"
                                     id="techs"></textarea>
                             </div>
-                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
+                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Сохранить</button>
                             </form>
                         </div>
                     </div>

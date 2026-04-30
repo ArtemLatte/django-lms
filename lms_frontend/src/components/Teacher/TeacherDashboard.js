@@ -25,10 +25,10 @@ function TeacherDashboard(){
             </aside>
             <section className='col-md-9'>
                 <div className='row mt-3'>
-                  <h4>Dashboard</h4>
+                  <h4>Информация по курсам</h4>
                   <div className='col-md-4 mt-3'>
                     <div className='card border-primary'>
-                      <h5 className='card-header bg-warning text-white'>Total Courses</h5>
+                      <h5 className='card-header bg-warning text-white'>Всего курсов</h5>
                       <div className='card-body'>
                         <h3><Link to="/teacher-courses" className='text-warning'>{dashbarData.total_teacher_courses} <i class="bi bi-journals text-warning"></i></Link></h3>
                       </div>
@@ -36,7 +36,7 @@ function TeacherDashboard(){
                   </div>
                   <div className='col-md-4 mt-3'>
                     <div className='card border-primary'>
-                      <h5 className='card-header bg-success text-white'>Total Students</h5>
+                      <h5 className='card-header bg-success text-white'>Всего студентов</h5>
                       <div className='card-body'>
                         <h3><Link to="/teacher-users" className='text-success'>{dashbarData.total_teacher_students} <i class="bi bi-people-fill"></i></Link></h3>
                       </div>
@@ -44,7 +44,7 @@ function TeacherDashboard(){
                   </div>
                   <div className='col-md-4 mt-3'>
                     <div className='card border-primary'>
-                      <h5 className='card-header bg-info text-white'>Total Chapters</h5>
+                      <h5 className='card-header bg-info text-white'>Всего модулей</h5>
                       <div className='card-body'>
                         <h3><Link to="/teacher-courses">{dashbarData.total_teacher_chapters} <i class="bi bi-stickies-fill"></i></Link></h3>
                       </div>

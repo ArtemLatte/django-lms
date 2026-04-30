@@ -65,7 +65,7 @@ function EditCourse(){
 
     const formSubmit = () => {
         const _formData = new FormData();
-        _formData.append('category', courseData.category);
+        _formData.append('category', courseData.category.id);
         _formData.append('teacher', 1);
         _formData.append('title', courseData.title);
         _formData.append('description', courseData.description);
@@ -107,37 +107,36 @@ function EditCourse(){
                 </aside>
                 <div className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'> Edit Course</h5>
+                        <h5 className='card-header'>Изменить курс</h5>
                         <div className='card-body'>
                             <form>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Category</label>
+                                    <label for="title" className="form-label">Категория</label>
                                     <select name="category" value={courseData.category} onChange={handleChange} class="form-control">
-                                        {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}
-                                        </option>})}
+                                        {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}</option>})}
                                     </select>
                             </div>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Title</label>
+                                    <label for="title" className="form-label">Название</label>
                                     <input name="title" type="text" value={courseData.title} onChange={handleChange} id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="description" className="form-label">Description</label>
+                                    <label for="description" className="form-label">Описание</label>
                                     <textarea name="description" value={courseData.description} onChange={handleChange} className="form-control" id="description"></textarea>
                             </div>
                             <div className="mb-3">
-                                    <label for="video" className="form-label">Featured Image</label>
+                                    <label for="video" className="form-label">Изображение</label>
                                     <input name="f_img" id="video" type="file" onChange={handleFileChange} className="form-control" />
                                     {courseData.prev_img &&
                                         <p className="mt-2"><img src={courseData.prev_img} width="300" /></p>
                                     }
                             </div>
                             <div className="mb-3">
-                                    <label for="techs" className="form-label">Technologies</label>
+                                    <label for="techs" className="form-label">Технологии</label>
                                     <textarea name="techs" value={courseData.techs} onChange={handleChange} className="form-control" id="techs" placeholder="Php, Python, Javascript, HTML, CSS"
                                     id="techs"></textarea>
                             </div>
-                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
+                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Сохранить</button>
                             </form>
                         </div>
                     </div>
