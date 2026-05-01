@@ -275,3 +275,12 @@ class NotificationList(generics.ListCreateAPIView):
 class QuizList(generics.ListCreateAPIView):
     queryset = models.Quiz.objects.all()
     serializer_class = QuizSerializer
+
+#Specific teacher Quiz
+class TeacherQuizList(generics.ListCreateAPIView):
+    serializer_class = QuizSerializer
+
+    def get_queryset(self):
+        teacher_id=self.kwargs['teacher_id']
+        teacher=models.Teacher.objects.get(pk=teacher_id)
+        return models.Quiz.objects.filter(teacher=teacher)
