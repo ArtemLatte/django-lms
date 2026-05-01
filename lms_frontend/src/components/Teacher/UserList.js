@@ -49,7 +49,7 @@ function UserList() {
                                         <td>
                                             {row.student.interested_categories}
                                         </td>
-                                        <td>
+                                        <td className='text-nowrap'>
                                             <Link to={`/show-assignment/${row.student.id}/${teacherId}`} className='btn btn-sm btn-warning'>Assignments</Link>
                                             <Link to={`/add-assignment/${row.student.id}/${teacherId}`} 
                                             className='btn btn-sm btn-success ms-2'>Add Assignment</Link>
