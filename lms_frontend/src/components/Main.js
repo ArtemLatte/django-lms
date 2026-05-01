@@ -33,6 +33,9 @@ import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 import TeacherLogout from './Teacher/TeacherLogout';
 
+//Quiz
+import AddQuiz from './Teacher/AddQuiz';
+
 //List Pages
 import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
@@ -75,6 +78,8 @@ function Main() {
             <Route path="/add-assignment/:student_id/:teacher_id" element={<AddAssignment />} />
             <Route path="/show-assignment/:student_id/:teacher_id" element={<ShowAssignment />} />
             <Route path="/my-assignments/" element={<StudentAssignments />} />
+            <Route path="/add-quiz" element={<AddQuiz />} />
+
             <Route path="/teacher-users" element={<UserList />} />
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
