@@ -113,6 +113,11 @@ class StudentList(generics.ListCreateAPIView):
     serializer_class = StudentSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
+class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Student.objects.all()
+    serializer_class = StudentSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
 class StudentDashboard(generics.RetrieveAPIView):
     queryset=models.Student.objects.all()
     serializer_class=StudentDashboardSerializer
@@ -242,3 +247,16 @@ class MyAssignmentList(generics.ListCreateAPIView):
 class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.StudentAssignment.objects.all()
     serializer_class = StudentAssignmentSerializer
+
+@csrf_exempt
+def student_change_password(request, student_id):
+    password=request.POST['password']
+    try:
+        studentData=models.Student.objects.get(id=student_id)
+    except models.Student.DoesNotExist:
+        studentData=None
+    if studentData:
+        models.Student.objects.filter(id=student_id).update(password=password)
+        return JsonResponse({'bool':True})
+    else:
+        return JsonResponse({'bool':False})
