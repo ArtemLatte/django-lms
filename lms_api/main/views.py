@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer
+from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer
 from django.db.models import Q
 from . import models
 from rest_framework.response import Response
@@ -100,8 +100,8 @@ class CourseChapterList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         course_id=self.kwargs['course_id']
-        course=models.Course.objects.get(pk=course_id )
-        return models.Chapter .objects.filter(course=course)
+        course=models.Course.objects.get(pk=course_id)
+        return models.Chapter.objects.filter(course=course)
 
 class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Chapter.objects.all()
@@ -293,5 +293,12 @@ class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Quiz.objects.all()
     serializer_class = QuizSerializer
 
+class QuizQuestionList(generics.ListCreateAPIView):
+    serializer_class = QuestionSerializer
+
+    def get_queryset(self):
+        quiz_id=self.kwargs['quiz_id']
+        quiz=models.Quiz.objects.get(pk=quiz_id)
+        return models.QuizQuestions.objects.filter(quiz=quiz)
 
 

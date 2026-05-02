@@ -1,19 +1,23 @@
 import {Link} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import { useState, useEffect } from 'react';
+import {useParams} from 'react-router-dom';
 import Swal from 'sweetalert2'
 import axios from 'axios'
 const baseUrl = 'http://127.0.0.1:8000/api'
-function AllQuiz() {
-    const [quizData,setquizData]=useState([]);
+
+function QuizQuestions(){
+    const [questionData,setquestionData]=useState([]);
     const [totalResult,settotalResult]=useState(0);
-    const teacherId=localStorage.getItem('teacherId');
+    const {quiz_id}=useParams();
+
     //Fetch courses when page load
     useEffect(()=> {
         try{
-        axios.get(baseUrl+'/teacher-quiz/'+teacherId)
+        axios.get(baseUrl+'/quiz-questions/'+quiz_id)
         .then((res)=>{
-                setquizData(res.data);
+                settotalResult(res.data.length)
+                setquestionData(res.data);
         });
         }catch(error){
             console.log(error);
@@ -21,7 +25,7 @@ function AllQuiz() {
     },[]);
 
     //Delete data
-    const handleDeleteClick = (quiz_id) => {
+    const handleDeleteClick = (question_id) => {
         Swal.fire({
             title: 'Confirm',
             text: 'Are you sure you want to delete this data?',
@@ -31,14 +35,14 @@ function AllQuiz() {
         }).then((result)=>{
             if(result.isConfirmed){
                 try{
-                    axios.delete(baseUrl+'/quiz/'+quiz_id)
+                    axios.delete(baseUrl+'/question/'+question_id)
                     .then((res)=>{
                     Swal.fire('success', 'Data has been deleted');
                         try{
-                            axios.get(baseUrl+'/teacher-quiz/'+teacherId)
+                            axios.get(baseUrl+'/quiz-questions/'+quiz_id)
                             .then((res)=>{
                                     settotalResult(res.data.length)
-                                    setquizData(res.data);
+                                    setquestionData(res.data);
                             });
                             }catch(error){
                                 console.log(error);
@@ -53,36 +57,32 @@ function AllQuiz() {
         });
     }
 
-    return (
-        <div className="container mt-4">
+    return(
+         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
                     <TeacherSidebar />
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">All Quiz</h5>
+                        <h5 className="card-header">Вопросы (всего вопросов: {totalResult}) <Link className="btn btn-success btn-sm float-end" to={'/add-question/'+quiz_id}>Добавить вопрос</Link></h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Total Questions</th>
-                                        <th>Action</th>
+                                        <th>Вопрос</th>
+                                        <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {quizData.map((row,index) =>  
+                                    {questionData.map((row,index) =>
                                     <tr>
+                                        <td><Link to={'/edit-question/'+row.id}>{row.question}</Link></td>
                                         <td>
-                                            <Link to={`/all-questions/`+row.id}>{row.title}</Link>
-                                            
-                                        </td>
-                                        <td><Link to="#">123</Link></td>
-                                        <td>
-                                            <Link class="btn btn-info btn-sm" to={`/edit-quiz/`+row.id}>Edit</Link>
-                                            <Link class="btn btn-success btn-sm ms-2" to={`/add-question/`+row.id}>Add Question</Link>
-                                            <button onClick={()=>handleDeleteClick(row.id)} className="btn btn-danger btn-sm ms-2">Delete</button>
+                                            <Link to={'/edit-question/'+row.id} className="btn btn-info btn-sm text-white"><i class="bi
+                                            bi-pencil-square"></i></Link>
+                                            <button onClick={()=>handleDeleteClick(row.id)} to={'/delete-chapter/'+row.id} className="btn btn-sm btn-danger ms-1"><i class="bi
+                                            bi-trash"></i></button>
                                         </td>
                                     </tr>
                                     )}
@@ -96,4 +96,4 @@ function AllQuiz() {
     )
 }
 
-export default AllQuiz;
+export default QuizQuestions;
