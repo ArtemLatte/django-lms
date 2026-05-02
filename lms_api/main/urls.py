@@ -60,4 +60,8 @@ urlpatterns = [
     path("quiz-assign-course/", views.CourseQuizList.as_view()),
     path("fetch-assigned-quiz/<int:course_id>", views.CourseQuizList.as_view()),
     path('attempt-quiz/', views.AttempQuizList.as_view()),
+
+    # Study materials
+    path("study-materials/<int:course_id>", views.StudyMaterialList.as_view()),
+    path("study-material/<int:pk>", views.StudyMaterialDetailView.as_view()),
 ]

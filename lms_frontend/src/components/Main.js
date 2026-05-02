@@ -42,6 +42,10 @@ import QuizQuestions from './Teacher/QuizQuestions';
 import AddQuizQuestion from './Teacher/AddQuizQuestion'
 import AssignQuiz from './Teacher/AssignQuiz'
 
+//Course study materials
+import StudyMaterials from './Teacher/StudyMaterials';
+import AddStudyMaterial from './Teacher/AddStudyMaterial';
+
 //Student Dashboard Quiz
 import CourseQuizList from './User/CourseQuizList';
 import TakeQuiz from './User/TakeQuiz';
@@ -99,6 +103,9 @@ function Main() {
 
             <Route path='/course-quiz/:course_id' element={<CourseQuizList  />}/>
             <Route path='/take-quiz/:quiz_id' element={<TakeQuiz  />}/>
+
+            <Route path="/study-materials/:course_id" element={<StudyMaterials />} />
+            <Route path="/add-study/:course_id" element={<AddStudyMaterial />} />
 
             <Route path="/teacher-users" element={<UserList />} />
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />

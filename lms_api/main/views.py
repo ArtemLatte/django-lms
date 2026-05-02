@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer
+from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer
 from django.db.models import Q
 from . import models
 from rest_framework.response import Response
@@ -349,6 +349,19 @@ def fetch_quiz_attempt_status(request,quiz_id,student_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+class StudyMaterialList(generics.ListCreateAPIView):
+    serializer_class = StudyMaterialSerializer
+
+    def get_queryset(self):
+        course_id=self.kwargs['course_id']
+        course=models.Course.objects.get(pk=course_id)
+        return models.StudyMaterial.objects.filter(course=course)
+
+class StudyMaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.StudyMaterial.objects.all()
+    serializer_class = StudyMaterialSerializer
+
 
 
 
