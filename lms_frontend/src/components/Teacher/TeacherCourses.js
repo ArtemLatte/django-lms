@@ -57,6 +57,7 @@ function TeacherCourses() {
                                         <td>
                                             <Link class="btn btn-info btn-sm" to={`/edit-course/`+course.id}>Изменить</Link>
                                             <Link class="btn btn-success btn-sm ms-2" to={`/add-chapter/`+course.id}>Добавить модуль</Link>
+                                            <Link class="btn btn-warning btn-sm ms-2" to={`/assign-quiz/`+course.id}>Assign Quiz</Link>
                                             <button className="btn btn-danger btn-sm ms-2">Удалить</button>
                                         </td>
                                     </tr>

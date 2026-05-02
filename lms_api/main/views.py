@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer
+from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer
 from django.db.models import Q
 from . import models
 from rest_framework.response import Response
@@ -300,5 +300,19 @@ class QuizQuestionList(generics.ListCreateAPIView):
         quiz_id=self.kwargs['quiz_id']
         quiz=models.Quiz.objects.get(pk=quiz_id)
         return models.QuizQuestions.objects.filter(quiz=quiz)
+
+class CourseQuizList(generics.ListCreateAPIView):
+    queryset = models.CourseQuiz.objects.all()
+    serializer_class = CourseQuizSerializer
+
+def fetch_quiz_assign_status(request, quiz_id, course_id):
+    quiz=models.Quiz.objects.filter(id=quiz_id).first()
+    course = models.Course.objects.filter(id=course_id).first()
+    assignStatus=models.CourseQuiz.objects.filter(course=course, quiz=quiz).count()
+    if assignStatus:
+        return JsonResponse({'bool':True})
+    else:
+        return JsonResponse({'bool':False})
+
 
 
