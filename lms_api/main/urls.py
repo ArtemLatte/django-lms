@@ -12,6 +12,7 @@ urlpatterns = [
     path("category/", views.CategoryList.as_view()),
     # Course
     path("course/", views.CourseList.as_view()),
+    path("search-courses/<str:searchstring>", views.CourseList.as_view()),
     # Course Detail
     path("course/<int:pk>/", views.CourseDetailView.as_view()),
     #Specific Course Chapter

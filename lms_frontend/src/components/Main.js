@@ -1,6 +1,7 @@
 import Header from './Header';
 import Home from './Home';
 import CourseDetail from './CourseDetail';
+import Search from './Search';
 import TeacherDetail from './TeacherDetail';
 
 //User
@@ -66,6 +67,7 @@ function Main() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/detail/:course_id" element={<CourseDetail />} />
+            <Route path="/search/:searchstring" element={<Search />} />
             <Route path="/user-login" element={<Login />} />
             <Route path="/user-logout" element={<Logout />} />
             <Route path="/user-register" element={<Register />} />
