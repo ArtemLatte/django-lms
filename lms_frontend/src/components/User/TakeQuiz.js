@@ -8,18 +8,18 @@ const baseUrl = 'http://127.0.0.1:8000/api';
 
 function TakeQuiz(){
 
-    const studentId=localStorage.getItem('studentId')
-    const [questionData,setQuestionData]=useState([])
+    const studentId=localStorage.getItem('studentId');
+    const [questionData,setQuestionData]=useState([]);
     const {quiz_id}=useParams();
 
     useEffect(()=>{
         try{
             axios.get(baseUrl+'/quiz-questions/'+quiz_id+'/1')
             .then((res)=>{
-                setQuestionData(res.data)
+                setQuestionData(res.data);
             });
         }catch(error){
-            console.log(error)
+            console.log(error);
         }
 
       },[]);
@@ -46,10 +46,10 @@ function TakeQuiz(){
                         try{
                             axios.get(baseUrl+'/quiz-questions/'+quiz_id+'/next-question/'+question_id)
                             .then((res)=>{
-                                setQuestionData(res.data)
+                                setQuestionData(res.data);
                             });
                         }catch(error){
-                            console.log(error)
+                            console.log(error);
                         }
                     }
                 });
@@ -68,11 +68,11 @@ function TakeQuiz(){
                 <h4 className='mb-3 border-bottom pb-1'>Quiz</h4>
                 {questionData.map((row,index) =>
                     <div className='card'>
-                        <h5 className='card-header'>{row.questions}</h5>
+                        <h5 className='card-header'>{row.question}</h5>
                         <div className='card-body'>
                             <table className='table table-bordered'>
                                 <tbody>
-
+<>
                                 <tr>
                                     <td><button onClick={()=>submitAnswer(row.id,row.ans1)} className='btn btn-outline-secondary'>{row.ans1}</button></td>
                                 </tr>
@@ -85,7 +85,7 @@ function TakeQuiz(){
                                 <tr>
                                     <td><button onClick={()=>submitAnswer(row.id,row.ans4)} className='btn btn-outline-secondary'>{row.ans4}</button></td>
                                 </tr>
-
+</>
                                 </tbody>
                             </table>
                         </div>

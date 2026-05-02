@@ -30,8 +30,11 @@ function CheckQuizStatusStudent(props){
         {quizData.bool=true &&
             <Link className='btn btn-success btn-sm ms-2' to={`/take-quiz/${props.quiz}`}>Take Quiz</Link>
         }
+        {quizData.bool=false &&
+            <span className="text-success">Attempted</span>
+        }
     </td>
   )
 }
 
-export default CheckQuizStatusStudent
+export default CheckQuizStatusStudent;

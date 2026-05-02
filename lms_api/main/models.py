@@ -220,3 +220,19 @@ class CourseQuiz(models.Model):
 
     class Meta:
         verbose_name_plural="13. Course Quiz"
+
+class AttemptQuiz(models.Model):
+    student=models.ForeignKey(Student,on_delete=models.CASCADE,null=True)
+    quiz=models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
+    question=models.ForeignKey(QuizQuestions,on_delete=models.CASCADE,null=True)
+    right_ans=models.CharField(max_length=200,null=True)
+    add_time=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+         verbose_name_plural="14. Attempted Questions "
+
+
+
+
+
+

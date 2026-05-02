@@ -49,7 +49,7 @@ function CourseQuizList(){
                                 {quizData.map((row,index) =>
                                 <tr>
                                     <td>{row.quiz.title}</td>
-                                    <td><CheckQuizStatusStudent quiz={row.quiz.id} student={studentId}/></td>
+                                    <CheckQuizStatusStudent quiz={row.quiz.id} student={studentId}/>
                                 </tr>
                                 )}
                             </tbody>
