@@ -36,6 +36,7 @@ import TeacherLogout from './Teacher/TeacherLogout';
 //Quiz
 import AddQuiz from './Teacher/AddQuiz';
 import AllQuiz from './Teacher/AllQuiz';
+import EditQuiz from './Teacher/EditQuiz';
 
 //List Pages
 import AllCourses from './AllCourses';
@@ -82,6 +83,7 @@ function Main() {
 
             <Route path="/add-quiz" element={<AddQuiz />} />
             <Route path="/quiz" element={<AllQuiz />} />
+            <Route path="/edit-quiz/:quiz_id" element={<EditQuiz />} />
 
             <Route path="/teacher-users" element={<UserList />} />
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
