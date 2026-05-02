@@ -33,13 +33,17 @@ import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 import TeacherLogout from './Teacher/TeacherLogout';
 
-//Quiz
+//Teacher Dashboard Quiz
 import AddQuiz from './Teacher/AddQuiz';
 import AllQuiz from './Teacher/AllQuiz';
 import EditQuiz from './Teacher/EditQuiz';
 import QuizQuestions from './Teacher/QuizQuestions';
 import AddQuizQuestion from './Teacher/AddQuizQuestion'
 import AssignQuiz from './Teacher/AssignQuiz'
+
+//Student Dashboard Quiz
+import CourseQuizList from './User/CourseQuizList';
+import TakeQuiz from './User/TakeQuiz';
 
 //List Pages
 import AllCourses from './AllCourses';
@@ -90,6 +94,9 @@ function Main() {
             <Route path="/all-questions/:quiz_id" element={<QuizQuestions />} />
             <Route path='/add-question/:quiz_id' element={<AddQuizQuestion  />}/>
             <Route path='/assign-quiz/:course_id' element={<AssignQuiz  />}/>
+
+            <Route path='/course-quiz/:course_id' element={<CourseQuizList  />}/>
+            <Route path='/take-quiz/:quiz_id' element={<TakeQuiz  />}/>
 
             <Route path="/teacher-users" element={<UserList />} />
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
