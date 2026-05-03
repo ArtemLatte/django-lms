@@ -199,12 +199,17 @@ class EnrolledStudentList(generics.ListAPIView):
             return models.StudentCourseEnrollment.objects.filter(student=student).distinct()
 
 class CourseRatingList(generics.ListCreateAPIView):
-    serializer_class = CourseRatingSerializer
+    queryset=models.CourseRating.objects.all()
+    serializer_class=CourseRatingSerializer
 
     def get_queryset(self):
-        course_id=self.kwargs['course_id']
-        course=models.Course.objects.get(pk=course_id )
-        return models.CourseRating .objects.filter(course=course)
+        if 'popular' in self.request.GET:
+            sql="SELECT *, AVG(cr.rating) as avg_rating FROM main_courserating as cr INNER JOIN main_course as c ON cr.course_id=c.id GROUP BY c.id ORDER BY avg_rating desc LIMIT 4"
+            return models.CourseRating.objects.raw(sql)
+        if 'all' in self.request.GET:
+            sql="SELECT *, AVG(cr.rating) as avg_rating FROM main_courserating as cr INNER JOIN main_course as c ON cr.course_id=c.id GROUP BY c.id ORDER BY avg_rating desc"
+            return models.CourseRating.objects.raw(sql)
+        return models.CourseRating.objects.filter(course__isnull=False).order_by('-rating')
     
 def fetch_rating_status(request, student_id, course_id):
     student = models.Student.objects.filter(id=student_id).first()
