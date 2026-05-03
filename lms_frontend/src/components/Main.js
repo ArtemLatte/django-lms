@@ -15,6 +15,7 @@ import RecommendedCourses from './User/RecommendedCourses';
 import StudentAssignments from './User/StudentAssignments';
 import ProfileSetting from './User/ProfileSetting';
 import ChangePassword from './User/ChangePassword';
+import UserStudyMaterials from './User/UserStudyMaterials';
 
 //Teachers
 import TeacherLogin from './Teacher/TeacherLogin';
@@ -104,6 +105,7 @@ function Main() {
             <Route path='/course-quiz/:course_id' element={<CourseQuizList  />}/>
             <Route path='/take-quiz/:quiz_id' element={<TakeQuiz  />}/>
 
+            <Route path="/user/study-materials/:course_id" element={<UserStudyMaterials />} />
             <Route path="/study-materials/:course_id" element={<StudyMaterials />} />
             <Route path="/add-study/:course_id" element={<AddStudyMaterial />} />
 
