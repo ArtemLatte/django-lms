@@ -7,7 +7,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 const baseUrl = 'http://127.0.0.1:8000/api'
 
-function CheckQuizinCourse(props){
+function CheckQuizCourse(props){
     useEffect(()=>{
         document.title='LMS | All Quiz'
       })
@@ -58,7 +58,7 @@ function CheckQuizinCourse(props){
         {quizData.bool==true &&
         <>
             <span className='text-success'>Assigned</span>
-            &nbsp;&nbsp;
+            &nbsp;
             <Link className='btn btn-sm btn-info' to={`/attempted-students/`+props.quiz}>Attempted Students</Link>
         </>
         }
@@ -66,4 +66,4 @@ function CheckQuizinCourse(props){
   )
 }
 
-export default CheckQuizinCourse;
+export default CheckQuizCourse;

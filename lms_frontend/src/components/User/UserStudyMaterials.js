@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import TeacherSidebar from './TeacherSidebar';
+import Sidebar from './Sidebar';
 import { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import Swal from 'sweetalert2'
@@ -14,7 +14,7 @@ function StudyMaterials(){
     //Fetch courses when page load
     useEffect(()=> {
         try{
-        axios.get(baseUrl+'/study-materials/'+course_id)
+        axios.get(baseUrl+'/user/study-materials/'+course_id)
         .then((res)=>{
                 settotalResult(res.data.length)
                 setstudyData(res.data);
@@ -24,39 +24,6 @@ function StudyMaterials(){
         }
     },[]);
 
-    //Delete data
-    const handleDeleteClick = (study_id) => {
-        Swal.fire({
-            title: 'Confirm',
-            text: 'Are you sure you want to delete this data?',
-            icon: 'info',
-            confirmButtonText: 'Continue',
-            showCancelButton:true
-        }).then((result)=>{
-            if(result.isConfirmed){
-                try{
-                    axios.delete(baseUrl+'/study-material/'+study_id)
-                    .then((res)=>{
-                    Swal.fire('success', 'Data has been deleted');
-                        try{
-                            axios.get(baseUrl+'/study-materials/'+course_id)
-                            .then((res)=>{
-                                    settotalResult(res.data.length)
-                                    setstudyData(res.data);
-                            });
-                            }catch(error){
-                                console.log(error);
-                        }
-                    });
-                }catch(error){
-                    Swal.fire('error', 'Data has not been deleted!!');
-                }
-            }else{
-                Swal.fire('error', 'Data has not been deleted!!');
-            }
-        });
-    }
-
     const downloadFile = (file_url) => {
         window.location.href = file_url
     }
@@ -65,33 +32,30 @@ function StudyMaterials(){
          <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
-                    <TeacherSidebar />
+                    <Sidebar />
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Материалы для изучения (всего материалов: {totalResult}) <Link className="btn btn-success btn-sm float-end" to={'/add-study/'+course_id}>Добавить материалы</Link></h5>
+                        <h5 className="card-header">Материалы для изучения (всего материалов: {totalResult})</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Название</th>
+                                        <th>Подробности</th>
                                         <th>Обучающий материал</th>
                                         <th>Замечания</th>
-                                        <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {studyData.map((row,index) =>
                                     <tr>
                                         <td>{row.title}</td>
+                                        <td>{row.description}</td>
                                         <td>
                                             <button className='btn btn-outline-primary' onClick={()=>downloadFile(row.upload)}>Download File</button>
                                         </td>
                                         <td>{row.remarks}</td>
-                                        <td>
-                                            <button onClick={()=>handleDeleteClick(row.id)} to={'/delete-chapter/'+row.id} className="btn btn-sm btn-danger ms-1"><i class="bi
-                                            bi-trash"></i></button>
-                                        </td>
                                     </tr>
                                     )}
                                 </tbody>

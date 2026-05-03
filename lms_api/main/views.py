@@ -350,6 +350,20 @@ def fetch_quiz_attempt_status(request,quiz_id,student_id):
     else:
         return JsonResponse({'bool':False})
 
+def fetch_quiz_result(request,quiz_id,student_id):
+    quiz=models.Quiz.objects.filter(id=quiz_id).first()
+    student=models.Student.objects.filter(id=student_id).first()
+    total_questions=models.QuizQuestions.objects.filter(quiz=quiz).count()
+    total_attempted_questions=models.AttemptQuiz.objects.filter(quiz=quiz,student=student).values('student').count()
+    attempted_questions=models.AttemptQuiz.objects.filter(quiz=quiz,student=student)
+
+    total_correct_questions=0
+    for attempt in attempted_questions:
+        if attempt.right_ans == attempt.question.right_ans:
+            total_correct_questions+=1
+
+    return JsonResponse({'total_questions':total_questions, 'total_attempted_questions':total_attempted_questions,'total_correct_questions':total_correct_questions})
+
 class StudyMaterialList(generics.ListCreateAPIView):
     serializer_class = StudyMaterialSerializer
 
