@@ -13,6 +13,10 @@ class TeacherList(generics.ListCreateAPIView):
     queryset = models.Teacher.objects.all()
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]
+    def get_queryset(self):
+        if 'popular' in self.request.GET:
+            sql = "SELECT *,COUNT(c.id) as total_course FROM main_teacher as t INNER JOIN main_course as c ON c.teacher_id=t.id GROUP BY t.id ORDER BY total_course desc"
+            return models.Teacher.objects.raw(sql)
 
 class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Teacher.objects.all()

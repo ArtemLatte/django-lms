@@ -4,7 +4,7 @@ from . import models
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = ['id', 'full_name', 'email', 'password', 'qualification', 'mobile_no', 'skills', 'profile_img', 'teacher_courses', 'skill_list']
+        fields = ['id', 'full_name', 'email', 'password', 'qualification', 'mobile_no', 'skills', 'profile_img', 'teacher_courses', 'skill_list', 'total_teacher_courses']
         
     def __init__(self, *args, **kwargs):
         super(TeacherSerializer, self).__init__(*args, **kwargs)
