@@ -14,6 +14,7 @@ function CourseDetail() {
     const [userLoginStatus, setuserLoginStatus]=useState();
     const [enrollStatus, setenrollStatus]=useState();
     const [ratingStatus, setratingStatus]=useState();
+    const [courseViews, setcourseViews]=useState(0);
     const [favoriteStatus,setFavoriteStatus]=useState([]);
     const [AvgRating, setAvgRating]=useState(0);
     let {course_id}=useParams();
@@ -33,6 +34,12 @@ function CourseDetail() {
                     setAvgRating(res.data.course_rating);
                 }
         });
+
+        axios.get(baseUrl+'/update-view/'+course_id)
+        .then((res)=>{
+                setcourseViews(res.data.views);
+        });
+
         }catch(error){
             console.log(error);
         }
@@ -247,7 +254,6 @@ function CourseDetail() {
                         {ratingStatus=='success' &&
                             <small className="badge bg-info text-dark ms-2">Вы уже записаны на этот курс</small>
                         }
-
                         <div className="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div className="modal-dialog modal-lg">
                                 <div className="modal-content">
@@ -279,6 +285,9 @@ function CourseDetail() {
                         </div>
                         </>
                         }
+                    </p>
+                    <p className="fw-bold">
+                        Просмотрено: {courseViews} раз(а)
                     </p>
                     { enrollStatus === 'success' && userLoginStatus === 'success' &&
                         <p><span>Вы уже записаны на этот курс</span></p>

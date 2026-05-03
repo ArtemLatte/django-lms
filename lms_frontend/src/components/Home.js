@@ -58,7 +58,7 @@ function Home() {
                         <div className="card-footer">
                             <div className="title">
                                 <span>Rating: {row.rating}/5</span>
-                                <span className="float-end">Views: 78945</span>
+                                <span className="float-end">Просмотрено: {row.course.course_views} раз(а)</span>
                             </div>
                         </div>
                     </div>
