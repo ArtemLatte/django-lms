@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, FaqSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer
+from .serializers import TeacherSerializer, FlatPagesSerializer, FaqSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer
 from django.db.models import Q
 from . import models
 from django.db.models import Avg
@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
+from django.contrib.flatpages.models import FlatPage
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 8
@@ -406,6 +407,13 @@ class FaqList(generics.ListAPIView):
     queryset = models.FAQ.objects.all()
     serializer_class = FaqSerializer
 
+class FlatPagesList(generics.ListAPIView):
+    queryset = FlatPage.objects.all()
+    serializer_class = FlatPagesSerializer
+
+class FlatPagesDetail(generics.RetrieveAPIView):
+    queryset = FlatPage.objects.all()
+    serializer_class = FlatPagesSerializer
 
 
 

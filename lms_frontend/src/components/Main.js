@@ -60,7 +60,7 @@ import CategoryCourses from './CategoryCourses';
 import Category from './Category';
 import TeacherSkillCourses from './TeacherSkillCourses';
 
-import About from './About';
+import Page from './Page';
 import Footer from './Footer';
 import FAQ from './FAQ';
 
@@ -74,7 +74,6 @@ function Main() {
         <Header />
         <Switch>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
             <Route path="/detail/:course_id" element={<CourseDetail />} />
             <Route path="/search/:searchstring" element={<Search />} />
             <Route path="/user-login" element={<Login />} />
@@ -127,6 +126,8 @@ function Main() {
             <Route path="/course/:category_id/:category_slug" element={<CategoryCourses />} />
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/page/:page_id/:page_slug" element={<Page />} />
+
         </Switch>
         <Footer />
     </div>
