@@ -43,6 +43,10 @@ function ContactUs(){
     };
     // End
 
+    const listStyle={
+        'list-style':'none'
+    }
+
     useEffect(()=>{
         document.title='Contact Us';
     });
@@ -50,7 +54,7 @@ function ContactUs(){
     return (
         <div className="container mt-4">
             <div className="row">
-                <div className="col-8 offset-2">
+                <div className="col-7">
                     {ContactData.status=='success' && <p class="text-success">Thanks for your contacting us</p>}
                     {ContactData.status=='error' && <p class="text-danger">Something wrong happened!!</p>}
                     <div className="card">
@@ -73,6 +77,23 @@ function ContactUs(){
                             {/* </form> */}
                         </div>
                     </div>
+                </div>
+                <div className="col-4 offset-1">
+                    <h3 className="border-bottom">Адрес</h3>
+                    <ul className="m-0 p-0" style={listStyle}>
+                        <li>
+                            <label className="fw-bold">Адрес:</label>
+                            <span className="ms-2">Киренского 7, ауд. 320</span>
+                        </li>
+                        <li>
+                            <label className="fw-bold">Номер:</label>
+                            <span className="ms-2">+7 (123) 456-78-90</span>
+                        </li>
+                        <li>
+                            <label className="fw-bold">Почта:</label>
+                            <span className="ms-2">Красноярск, 669988</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
