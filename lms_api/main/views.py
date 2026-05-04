@@ -44,7 +44,20 @@ def teacher_login(request):
     except models.Teacher.DoesNotExist:
         teacherData=None
     if teacherData:
-        return JsonResponse({'bool':True, 'teacher_id':teacherData.id})
+        if not teacherData.verify_status:
+            return JsonResponse({'bool': False, 'msg':'Account is not verified!!'})
+        else:
+            return JsonResponse({'bool':True, 'teacher_id':teacherData.id})
+    else:
+        return JsonResponse({'bool':False, 'msg':'Invalid Email Or Password!!'})
+
+@csrf_exempt
+def verify_teacher_via_otp(request, teacher_id):
+    otp_digit=request.POST.get('otp_digit')
+    verify=models.Teacher.objects.filter(id=teacher_id, otp_digit=otp_digit).first()
+    if verify:
+        models.Teacher.objects.filter(id=teacher_id, otp_digit=otp_digit).update(verify_status=True)
+        return JsonResponse({'bool':True, 'teacher_id':verify.id})
     else:
         return JsonResponse({'bool':False})
 

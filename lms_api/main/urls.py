@@ -9,6 +9,7 @@ urlpatterns = [
     path("teacher/change-password/<int:teacher_id>/", views.teacher_change_password),
     path('teacher-login',views.teacher_login),
     path('popular-teachers/', views.TeacherList.as_view()),
+    path('verify-teacher/<int:teacher_id>/', views.verify_teacher_via_otp),
     #Category
     path("category/", views.CategoryList.as_view()),
     # Course

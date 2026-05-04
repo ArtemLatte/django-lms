@@ -1,11 +1,12 @@
 from rest_framework import serializers
 from . import models
 from django.contrib.flatpages.models import FlatPage
+from django.core.mail import send_mail
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = ['id', 'full_name', 'email', 'password', 'qualification', 'mobile_no', 'skills', 'profile_img', 'teacher_courses', 'skill_list', 'total_teacher_courses']
+        fields = ['id', 'full_name', 'email', 'password', 'qualification', 'mobile_no', 'skills', 'otp_digit', 'profile_img', 'teacher_courses', 'skill_list', 'total_teacher_courses']
         
     def __init__(self, *args, **kwargs):
         super(TeacherSerializer, self).__init__(*args, **kwargs)
@@ -13,6 +14,20 @@ class TeacherSerializer(serializers.ModelSerializer):
         self.Meta.depth = 0
         if request and request.method == 'GET':
             self.Meta.depth = 1
+
+    def create(self, validate_data):
+        email = self.validated_data['email']
+        otp_digit = self.validated_data['otp_digit']
+        instance = super(TeacherSerializer, self).create(validate_data)
+        send_mail(
+            'Verify Account',
+            'Please verify your account',
+            'lms-project@mail.ru',
+            [email],
+            fail_silently=False,
+            html_message=f'<p>Your OTP is </p><p>{otp_digit}</p>'
+        )
+        return instance
 
 class TeacherDashboardSerializer(serializers.ModelSerializer):
     class Meta:

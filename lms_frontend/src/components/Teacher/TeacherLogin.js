@@ -30,7 +30,7 @@ function TeacherLogin(){
                             localStorage.setItem('teacherId',res.data.teacher_id);
                             window.location.href='/teacher-dashboard';
                         }else{
-                            seterrorMsg('Invalid Email Or Password!!')
+                            seterrorMsg(res.data.msg)
                         }
                     });
         }catch(error){
