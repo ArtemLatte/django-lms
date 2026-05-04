@@ -14,7 +14,7 @@ function Home() {
         try{
         axios.get(baseUrl+'/course/?result=4')
         .then((res)=>{
-                setCourseData(res.data);
+                setCourseData(res.data.results);
         });
         }catch(error){
             console.log(error);
@@ -23,7 +23,7 @@ function Home() {
         try{
             axios.get(baseUrl+'/popular-courses/?popular=1')
             .then((res)=>{
-              setPopularcourseData(res.data)
+              setPopularcourseData(res.data.results);
         });
         }catch(error){
             console.log(error)
@@ -41,7 +41,7 @@ function Home() {
         try {
           axios.get(baseUrl+'/student-testimonial')
           .then((res) => {
-            settestimonialData(res.data);
+            settestimonialData(res.data.results);
         });
         }catch(error){
           console.log(error)

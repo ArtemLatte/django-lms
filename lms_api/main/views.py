@@ -5,9 +5,16 @@ from django.views.decorators.csrf import csrf_exempt
 from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer
 from django.db.models import Q
 from . import models
+from django.db.models import Avg
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework.pagination import PageNumberPagination
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 4
+    page_size_query_param = 'page_size'
+    max_page_size = 4
 
 class TeacherList(generics.ListCreateAPIView):
     queryset = models.Teacher.objects.all()
@@ -48,6 +55,7 @@ class CategoryList(generics.ListCreateAPIView):
 class CourseList(generics.ListCreateAPIView):
     queryset = models.Course.objects.all()
     serializer_class = CourseSerializer
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -203,17 +211,19 @@ class EnrolledStudentList(generics.ListAPIView):
             return models.StudentCourseEnrollment.objects.filter(student=student).distinct()
 
 class CourseRatingList(generics.ListCreateAPIView):
-    queryset=models.CourseRating.objects.all()
-    serializer_class=CourseRatingSerializer
+    serializer_class = CourseRatingSerializer
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
+        qs = models.CourseRating.objects.select_related('course')
+
         if 'popular' in self.request.GET:
-            sql="SELECT *, AVG(cr.rating) as avg_rating FROM main_courserating as cr INNER JOIN main_course as c ON cr.course_id=c.id GROUP BY c.id ORDER BY avg_rating desc LIMIT 4"
-            return models.CourseRating.objects.raw(sql)
+            return qs.order_by('-rating')[:4]
+
         if 'all' in self.request.GET:
-            sql="SELECT *, AVG(cr.rating) as avg_rating FROM main_courserating as cr INNER JOIN main_course as c ON cr.course_id=c.id GROUP BY c.id ORDER BY avg_rating desc"
-            return models.CourseRating.objects.raw(sql)
-        return models.CourseRating.objects.filter(course__isnull=False).order_by('-rating')
+            return qs.order_by('-rating')
+
+        return qs.order_by('-rating')
     
 def fetch_rating_status(request, student_id, course_id):
     student = models.Student.objects.filter(id=student_id).first()
