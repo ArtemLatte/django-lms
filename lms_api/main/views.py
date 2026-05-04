@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer
+from .serializers import TeacherSerializer, FaqSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer
 from django.db.models import Q
 from . import models
 from django.db.models import Avg
@@ -401,6 +401,10 @@ def update_view(request,course_id):
     queryset.course_views+=1
     queryset.save()
     return JsonResponse({'views':queryset.course_views})
+
+class FaqList(generics.ListAPIView):
+    queryset = models.FAQ.objects.all()
+    serializer_class = FaqSerializer
 
 
 

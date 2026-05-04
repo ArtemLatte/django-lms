@@ -1,13 +1,15 @@
+import {Link} from 'react-router-dom'
 function Footer() {
   return (
-    <footer className="text-body-secondary py-5 border-top mt-5">
-        <div className="container">
-            <p className="float-end mb-1">
-                <a href="#">Back to top</a>
-            </p>
-            <p className="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-            <p className="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction">getting started guide</a>.</p>
-        </div>
+    <footer className="py-3 my-5"> 
+      <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+        <li className="nav-item"><Link to="#" className="nav-link px-2 text-muted">Home</Link></li>
+        <li className="nav-item"><Link to="#" className="nav-link px-2 text-muted">About Us</Link></li>
+        <li className="nav-item"><Link to="#" className="nav-link px-2 text-muted">Contact</Link></li>
+        <li className="nav-item"><Link to="/faq" className="nav-link px-2 text-muted">FAQs</Link></li>
+        <li className="nav-item"><Link to="#" className="nav-link px-2 text-muted">Support</Link></li>
+      </ul>
+      <p className="text-center text-muted">© 2026 КИ22-14Б</p>
     </footer>
   );
 }

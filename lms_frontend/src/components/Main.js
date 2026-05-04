@@ -62,6 +62,8 @@ import TeacherSkillCourses from './TeacherSkillCourses';
 
 import About from './About';
 import Footer from './Footer';
+import FAQ from './FAQ';
+
 
 import {Routes as Switch, Route} from 'react-router-dom';
 
@@ -124,6 +126,7 @@ function Main() {
             <Route path="/category" element={<Category />} />
             <Route path="/course/:category_id/:category_slug" element={<CategoryCourses />} />
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses />} />
+            <Route path="/faq" element={<FAQ />} />
         </Switch>
         <Footer />
     </div>
