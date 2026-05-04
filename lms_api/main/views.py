@@ -12,9 +12,9 @@ from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 4
+    page_size = 8
     page_size_query_param = 'page_size'
-    max_page_size = 4
+    max_page_size = 8
 
 class TeacherList(generics.ListCreateAPIView):
     queryset = models.Teacher.objects.all()
@@ -64,7 +64,8 @@ class CourseList(generics.ListCreateAPIView):
             qs = models.Course.objects.all().order_by('-id')[:limit]
         if 'category' in self.request.GET:
             category=self.request.GET['category']
-            qs = models.Course.objects.filter(techs__icontains=category)
+            category=models.CourseCategory.objects.filter(id=category).first()
+            qs = models.Course.objects.filter(category=category)
         if 'skill_name' in self.request.GET and 'teacher' in self.request.GET:
             skill_name = self.request.GET['skill_name']
             teacher = self.request.GET['teacher']

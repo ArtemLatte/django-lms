@@ -57,6 +57,7 @@ import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import PopularTeachers from './PopularTeachers';
 import CategoryCourses from './CategoryCourses';
+import Category from './Category';
 import TeacherSkillCourses from './TeacherSkillCourses';
 
 import About from './About';
@@ -120,7 +121,8 @@ function Main() {
             <Route path="/edit-chapter/:chapter_id" element={<EditChapter />} />
             <Route path="/popular-courses" element={<PopularCourses />} />
             <Route path="/popular-teachers" element={<PopularTeachers />} />
-            <Route path="/category/:category_slug" element={<CategoryCourses />} />
+            <Route path="/category" element={<Category />} />
+            <Route path="/course/:category_id/:category_slug" element={<CategoryCourses />} />
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses />} />
         </Switch>
         <Footer />
