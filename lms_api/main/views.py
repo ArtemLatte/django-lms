@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, FlatPagesSerializer, FaqSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer
+from .serializers import TeacherSerializer, FlatPagesSerializer, FaqSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer, ContactSerializer
 from django.db.models import Q
 from . import models
 from django.db.models import Avg
@@ -414,6 +414,10 @@ class FlatPagesList(generics.ListAPIView):
 class FlatPagesDetail(generics.RetrieveAPIView):
     queryset = FlatPage.objects.all()
     serializer_class = FlatPagesSerializer
+
+class ContactList(generics.ListCreateAPIView):
+    queryset = models.Contact.objects.all()
+    serializer_class = ContactSerializer
 
 
 

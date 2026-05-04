@@ -63,6 +63,7 @@ import TeacherSkillCourses from './TeacherSkillCourses';
 import Page from './Page';
 import Footer from './Footer';
 import FAQ from './FAQ';
+import ContactUs from './ContactUs';
 
 
 import {Routes as Switch, Route} from 'react-router-dom';
@@ -127,7 +128,7 @@ function Main() {
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/page/:page_id/:page_slug" element={<Page />} />
-
+            <Route path="/contact-us" element={<ContactUs />} />
         </Switch>
         <Footer />
     </div>
