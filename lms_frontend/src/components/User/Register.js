@@ -1,14 +1,17 @@
 import {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 const baseUrl = 'http://127.0.0.1:8000/api/student/';
 function Register(){
+    const navigate = useNavigate();
     const [studentData, setstudentData]=useState({
         'full_name':'',
         'email':'',
         'password':'',
         'username':'',
         'interested_categories':'',
-        'status':''
+        'status':'',
+        'otp_digit':'',
     });
 
     //Change Element value
@@ -22,22 +25,27 @@ function Register(){
 
     // Submit Form
     const submitForm=()=> {
+        const otp_digit = Math.floor(100000+Math.random() * 900000)
         const studentFormData=new FormData();
         studentFormData.append("full_name", studentData.full_name)
         studentFormData.append("email", studentData.email)
         studentFormData.append("password", studentData.password)
         studentFormData.append("username", studentData.username)
         studentFormData.append("interested_categories", studentData.interested_categories)
+        studentFormData.append("otp_digit", otp_digit)
         try{
             axios.post(baseUrl,studentFormData).then((response)=> {
-                setstudentData({
-                    'full_name':'',
-                    'email':'',
-                    'password':'',
-                    'username':'',
-                    'interested_categories':'',
-                    'status':'success'
-                });
+            navigate('/verify-student/'+response.data.id);
+            // window.location.href='/verify-teacher/'+response.data.id;
+//                setteacherData({
+//                    'full_name':'',
+//                    'email':'',
+//                    'password':'',
+//                    'qualification':'',
+//                    'mobile_no':'',
+//                    'skills':'',
+//                    'status':'success'
+//                });
             });
         }catch(error){
             console.log(error);

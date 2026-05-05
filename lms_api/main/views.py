@@ -162,7 +162,21 @@ def student_login(request):
     except models.Student.DoesNotExist:
         studentData=None
     if studentData:
-        return JsonResponse({'bool':True, 'student_id':studentData.id})
+        if not studentData.verify_status:
+            return JsonResponse({'bool': False, 'msg':'Account is not verified!!'})
+        else:
+            return JsonResponse({'bool':True, 'student_id':studentData.id})
+    else:
+        return JsonResponse({'bool':False, 'msg':'Invalid Email Or Password!!'})
+    
+
+@csrf_exempt
+def verify_student_via_otp(request, student_id):
+    otp_digit=request.POST.get('otp_digit')
+    verify=models.Student.objects.filter(id=student_id, otp_digit=otp_digit).first()
+    if verify:
+        models.Student.objects.filter(id=student_id, otp_digit=otp_digit).update(verify_status=True)
+        return JsonResponse({'bool':True, 'student_id':verify.id})
     else:
         return JsonResponse({'bool':False})
 

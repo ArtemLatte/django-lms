@@ -68,6 +68,7 @@ import ContactUs from './ContactUs';
 
 
 import {Routes as Switch, Route} from 'react-router-dom';
+import VerifyStudent from './User/VerifyStudent';
 
 
 function Main() {
@@ -130,6 +131,7 @@ function Main() {
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/page/:page_id/:page_slug" element={<Page />} />
+            <Route path="/verify-student/:student_id" element={<VerifyStudent />} />
             <Route path="/contact-us" element={<ContactUs />} />
         </Switch>
         <Footer />
