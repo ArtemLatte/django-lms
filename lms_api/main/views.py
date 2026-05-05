@@ -505,6 +505,41 @@ def teacher_change_password(request, teacher_id):
     else:
         return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
 
+@csrf_exempt
+def user_forgot_password(request):
+    email = request.POST.get('email')
+    verify = models.Student.objects.filter(email=email).first()
+    if verify:
+        link = f"http://localhost:3000/user-change-password/{verify.id}/"
+        send_mail(
+            'Verify Account',
+            'Please verify your account',
+            'lms-project@mail.ru',
+            [email],
+            fail_silently=False,
+            html_message=f'<p>Your OTP is </p><p>{link}</p>'
+        )
+        return JsonResponse({'bool': True, 'msg':'Please check your email'})
+    else:
+        return JsonResponse({'bool': False, 'msg':'Invalid Email!!'})
+
+@csrf_exempt
+def user_change_password(request, student_id):
+    password = request.POST.get('password')
+    verify = models.Student.objects.filter(id=student_id).first()
+    if verify:
+        models.Student.objects.filter(id=student_id).update(password=password)
+        return JsonResponse({'bool': True, 'msg':'Password has been change'})
+    else:
+        return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
+
+
+
+
+
+
+
+
 
 
 

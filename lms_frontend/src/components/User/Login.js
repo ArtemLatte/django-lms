@@ -77,6 +77,7 @@ function Login(){
                                 <label className="form-check-label" for="exampleCheck1">Remember Me</label>
                             </div> */}
                             <button type="submit" onClick={submitForm} className="btn btn-primary">Войти</button>
+                            <p className="mt-3"><Link to="/user-forgot-password" className="text-danger">Не помню пароль?</Link></p>
                         </div>
                     </div>
                 </div>

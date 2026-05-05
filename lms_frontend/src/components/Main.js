@@ -38,6 +38,9 @@ import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 import TeacherLogout from './Teacher/TeacherLogout';
 
+import UserForgotPassword from './User/UserForgotPassword';
+import UserForgotChangePassword from './User/UserForgotChangePassword';
+
 //Teacher Dashboard Quiz
 import AddQuiz from './Teacher/AddQuiz';
 import AllQuiz from './Teacher/AllQuiz';
@@ -84,6 +87,8 @@ function Main() {
             <Route path="/user-login" element={<Login />} />
             <Route path="/teacher-forgot-password" element={<ForgotPassword />} />
             <Route path="/teacher-change-password/:teacher_id" element={<ForgotChangePassword />} />
+            <Route path="/user-forgot-password" element={<UserForgotPassword />} />
+            <Route path="/user-change-password/:student_id" element={<UserForgotChangePassword />} />
             <Route path="/user-logout" element={<Logout />} />
             <Route path="/user-register" element={<Register />} />
             <Route path="/user-dashboard" element={<Dashboard />} />
