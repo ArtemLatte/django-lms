@@ -20,6 +20,8 @@ import UserStudyMaterials from './User/UserStudyMaterials';
 //Teachers
 import VerifyTeacher from './Teacher/VerifyTeacher';
 import TeacherLogin from './Teacher/TeacherLogin';
+import ForgotPassword from './Teacher/ForgotPassword';
+import ForgotChangePassword from './Teacher/ForgotChangePassword';
 import TeacherRegister from './Teacher/TeacherRegister';
 import TeacherDashboard from './Teacher/TeacherDashboard';
 import TeacherCourses from './Teacher/TeacherCourses';
@@ -80,6 +82,8 @@ function Main() {
             <Route path="/detail/:course_id" element={<CourseDetail />} />
             <Route path="/search/:searchstring" element={<Search />} />
             <Route path="/user-login" element={<Login />} />
+            <Route path="/teacher-forgot-password" element={<ForgotPassword />} />
+            <Route path="/teacher-change-password/:teacher_id" element={<ForgotChangePassword />} />
             <Route path="/user-logout" element={<Logout />} />
             <Route path="/user-register" element={<Register />} />
             <Route path="/user-dashboard" element={<Dashboard />} />

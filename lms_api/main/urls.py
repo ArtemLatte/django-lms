@@ -34,6 +34,8 @@ urlpatterns = [
     # Student
     path("student/", views.StudentList.as_view()),
     path('verify-student/<int:student_id>/', views.verify_student_via_otp),
+    path('teacher-forgot-password/', views.teacher_forgot_password),
+    path('teacher-change-password/<int:teacher_id>/', views.teacher_change_password),
     path("student/<int:pk>/", views.StudentDetail.as_view()),
     path('student/dashboard/<int:pk>/', views.StudentDashboard.as_view()),
     path("student/change-password/<int:student_id>/", views.student_change_password),
