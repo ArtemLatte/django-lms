@@ -14,6 +14,7 @@ function ProfileSetting(){
         'interested_categories':'',
         'profile_img':'',
         'p_img':'',
+        'login_via_otp':''
     });
     const studentId=localStorage.getItem('studentId');
     // Fetch categories when page load
@@ -29,6 +30,7 @@ function ProfileSetting(){
                 interested_categories:res.data.interested_categories,
                 profile_img:res.data.profile_img,
                 p_img:'',
+                login_via_otp:res.data.login_via_otp,
             });
         });
         }catch(error){
@@ -61,6 +63,7 @@ function ProfileSetting(){
         studentFormData.append("email", studentData.email)
         studentFormData.append("username", studentData.username)
         studentFormData.append("interested_categories", studentData.interested_categories)
+        studentFormData.append("login_via_otp", studentData.login_via_otp)
         if (studentData.p_img) {
             studentFormData.append(
                 'profile_img',
@@ -147,6 +150,12 @@ function ProfileSetting(){
                                 <div class="col-sm-10">
                                 <textarea className='form-control' name="interested_categories" value={studentData.interested_categories} onChange={handleChange}></textarea>
                                 <div id='emailHelp' class='form-text'>Php, Python, JavaScript</div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Двухфакторная аутентификация</label>
+                                <div class="col-sm-10">
+                                <input type="email" name="login_via_otp" value={studentData.login_via_otp} onChange={handleChange} class="form-control" id="login_via_otp"/>
                                 </div>
                             </div>
                             <hr />

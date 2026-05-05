@@ -182,7 +182,21 @@ def student_login(request):
         if not studentData.verify_status:
             return JsonResponse({'bool': False, 'msg':'Account is not verified!!'})
         else:
-            return JsonResponse({'bool':True, 'student_id':studentData.id})
+            if studentData.login_via_otp:
+                otp_digit = randint(100000, 999999)
+                send_mail(
+                    'Verify Account',
+                    'Please verify your account',
+                    'lms-project@mail.ru',
+                    [studentData.email],
+                    fail_silently=False,
+                    html_message=f'<p>Your OTP is </p><p>{otp_digit}</p>'
+                )
+                studentData.otp_digit=otp_digit
+                studentData.save()
+                return JsonResponse({'bool':True, 'student_id':studentData.id, 'login_via_otp':True})
+            else:
+                return JsonResponse({'bool':True, 'student_id':studentData.id, 'login_via_otp':False})
     else:
         return JsonResponse({'bool':False, 'msg':'Invalid Email Or Password!!'})
     
