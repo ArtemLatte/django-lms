@@ -2,9 +2,9 @@ import {Link} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 import Swal from 'sweetalert2';
-const baseUrl = 'http://127.0.0.1:8000/api'
+const baseUrl = 'http://127.0.0.1:8000/api';
 
 function AddAssignment(){
     const [assignmentData,setassignmentData]=useState({

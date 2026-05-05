@@ -87,4 +87,7 @@ urlpatterns = [
     path("pages/<int:pk>/<str:page_slug>/", views.FlatPagesDetail.as_view()),
 
     path("contact/", views.ContactList.as_view()),
+
+    path('send-message/<int:teacher_id>/<int:student_id>', views.save_teacher_student_msg),
+    path('get-messages/<int:teacher_id>/<int:student_id>', views.MessageList.as_view()),
 ]

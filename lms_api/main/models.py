@@ -288,8 +288,16 @@ class Contact(models.Model):
     class Meta:
         verbose_name_plural = "17. Contact Queries"
 
+# Messages
+class TeacherStudentChat(models.Model):
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    msg_text = models.TextField()
+    msg_from = models.CharField(max_length=100)
+    msg_time = models.DateTimeField(auto_now_add=True)
 
-
+    class Meta:
+        verbose_name_plural = "18. Teacher Student Messages"
 
 
 

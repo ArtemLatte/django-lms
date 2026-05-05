@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import TeacherSerializer, FlatPagesSerializer, FaqSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer, ContactSerializer
+from .serializers import TeacherSerializer, FlatPagesSerializer, FaqSerializer, NotificationSerializer, StudentAssignmentSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, StudentCourseEnrollSerializer, CourseRatingSerializer, TeacherDashboardSerializer, StudentFavoriteCourseSerializer, StudentDashboardSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer, AttempQuizSerializer, StudyMaterialSerializer, ContactSerializer, TeacherStudentChatSerializer
 from django.db.models import Q
 from . import models
 from django.db.models import Avg
@@ -532,6 +532,35 @@ def user_change_password(request, student_id):
         return JsonResponse({'bool': True, 'msg':'Password has been change'})
     else:
         return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
+
+@csrf_exempt
+def save_teacher_student_msg(request, teacher_id, student_id):
+    teacher = models.Teacher.objects.get(id=teacher_id)
+    student = models.Student.objects.get(id=student_id)
+    msg_text = request.POST.get('msg_text')
+    msg_from = request.POST.get('msg_from')
+    msgRes = models.TeacherStudentChat.objects.create(
+        teacher=teacher,
+        student=student,
+        msg_text=msg_text,
+        msg_from=msg_from,
+    )
+    if msgRes:
+        return JsonResponse({'bool': True, 'msg':'Message has been send'})
+    else:
+        return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
+
+class MessageList(generics.ListAPIView):
+    queryset = models.TeacherStudentChat.objects.all()
+    serializer_class = TeacherStudentChatSerializer
+
+    def get_queryset(self):
+        teacher_id=self.kwargs['teacher_id']
+        student_id = self.kwargs['student_id']
+        teacher = models.Teacher.objects.get(pk=teacher_id)
+        student = models.Student.objects.get(pk=student_id)
+        return models.TeacherStudentChat.objects.filter(teacher=teacher, student=student).exclude(msg_text='')
+
 
 
 
