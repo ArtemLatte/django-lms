@@ -16,6 +16,7 @@ function TeacherProfileSetting(){
         'status':'',
         'profile_img':'',
         'p_img':'',
+        'login_via_otp':''
     });
     const teacherId=localStorage.getItem('teacherId');
     // Fetch categories when page load
@@ -32,6 +33,7 @@ function TeacherProfileSetting(){
                 skills:res.data.skills,
                 profile_img:res.data.profile_img,
                 p_img:'',
+                login_via_otp: res.data.login_via_otp
             });
         });
         }catch(error){
@@ -65,6 +67,7 @@ function TeacherProfileSetting(){
         teacherFormData.append("qualification", teacherData.qualification)
         teacherFormData.append("mobile_no", teacherData.mobile_no)
         teacherFormData.append("skills", teacherData.skills)
+        teacherFormData.append("login_via_otp", teacherData.login_via_otp)
         if (teacherData.p_img!=''){
             teacherFormData.append('profile_img', teacherData.p_img, teacherData.p_img.name);
         }
@@ -147,6 +150,12 @@ function TeacherProfileSetting(){
                                 <div class="col-sm-10">
                                 <textarea className='form-control' name="qualification" value={teacherData.qualification} onChange={handleChange}></textarea>
                                 <div id='emailHelp' class='form-text'>Бакалавр, Магистр и т.д.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Двухфакторная аутентификация</label>
+                                <div class="col-sm-10">
+                                <input type="email" name="login_via_otp" value={teacherData.login_via_otp} onChange={handleChange} class="form-control" id="login_via_otp"/>
                                 </div>
                             </div>
                             <hr />

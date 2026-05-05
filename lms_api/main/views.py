@@ -11,6 +11,9 @@ from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
 from django.contrib.flatpages.models import FlatPage
+from django.core.mail import send_mail
+
+from random import randint
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 8
@@ -47,7 +50,21 @@ def teacher_login(request):
         if not teacherData.verify_status:
             return JsonResponse({'bool': False, 'msg':'Account is not verified!!'})
         else:
-            return JsonResponse({'bool':True, 'teacher_id':teacherData.id})
+            if teacherData.login_via_otp:
+                otp_digit = randint(100000, 999999)
+                send_mail(
+                    'Verify Account',
+                    'Please verify your account',
+                    'lms-project@mail.ru',
+                    [teacherData.email],
+                    fail_silently=False,
+                    html_message=f'<p>Your OTP is </p><p>{otp_digit}</p>'
+                )
+                teacherData.otp_digit=otp_digit
+                teacherData.save()
+                return JsonResponse({'bool':True, 'teacher_id':teacherData.id, 'login_via_otp':True})
+            else:
+                return JsonResponse({'bool':True, 'teacher_id':teacherData.id, 'login_via_otp':False})
     else:
         return JsonResponse({'bool':False, 'msg':'Invalid Email Or Password!!'})
 
@@ -59,7 +76,7 @@ def verify_teacher_via_otp(request, teacher_id):
         models.Teacher.objects.filter(id=teacher_id, otp_digit=otp_digit).update(verify_status=True)
         return JsonResponse({'bool':True, 'teacher_id':verify.id})
     else:
-        return JsonResponse({'bool':False})
+        return JsonResponse({'bool':False,'msg':'Please eneter valid 6 digit OTP'})
 
 class CategoryList(generics.ListCreateAPIView):
     queryset = models.CourseCategory.objects.all()
