@@ -21,9 +21,15 @@ function UserList() {
         }
     },[]);
 
+    const [groupMsgData,setgroupMsgData]=useState({
+        msg_text:'',
+    });
+
     const [msgData,setmsgData]=useState({
         msg_text:'',
     });
+    const [groupsuccessMsg,setgroupsuccessMsg]=useState('');
+    const [grouperrorMsg,setgrouperrorMsg]=useState('');
 
     const [successMsg,setsuccessMsg]=useState('');
     const [errorMsg,seterrorMsg]=useState('');
@@ -59,6 +65,37 @@ function UserList() {
         }
     };
 
+    const grouphandleChange=(event)=>{
+        setgroupMsgData({
+            ...groupMsgData,
+            [event.target.name]:event.target.value
+        });
+    }
+
+    const groupformSubmit = () => {
+        const _formData = new FormData();
+        _formData.append('msg_text', groupMsgData.msg_text);
+        _formData.append('msg_from', 'teacher');
+
+        try {
+            axios.post(baseUrl + "/send-group-message/"+teacherId, _formData)
+            .then((res) => {
+                if(res.data.bool==true){
+                    setgroupMsgData({
+                        'msg_text':'',
+                    });
+                    setgroupsuccessMsg(res.data.msg);
+                    setgrouperrorMsg('');
+                }else{
+                    setgroupsuccessMsg('');
+                    setgrouperrorMsg(res.data.msg);
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const msgList = {
         height:'500px',
         overflow:'auto'
@@ -72,7 +109,35 @@ function UserList() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Список всех студентов</h5>
+                        <h5 className="card-header">Список всех студентов
+                            <button type="button" className="btn btn-primary float-end btn-small" data-bs-toggle="modal" 
+                            data-bs-target="#groupMsgModal">
+                                Send Message
+                            </button>
+                        </h5>
+                        <div className="modal fade" id="groupMsgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="staticBackdropLabel">Send Message to All Students</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                {groupsuccessMsg && <p className='text-success'>{groupsuccessMsg}</p>}
+                                {grouperrorMsg && <p className='text-danger'>{grouperrorMsg}</p>}
+                                <form>
+                                <div className="mb-3">
+                                    <label for="exampleInputEmail1" className="form-label">Message</label>
+                                    <textarea onChange={grouphandleChange} value={groupMsgData.msg_text} name="msg_text" className='form-control' rows="10"></textarea>
+                                </div>
+                                <button type="button" onClick={groupformSubmit} className="btn btn-primary">Send</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
@@ -118,11 +183,11 @@ function UserList() {
             {successMsg && <p className='text-success'>{successMsg}</p>}
             {errorMsg && <p className='text-danger'>{errorMsg}</p>}
             <form>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Message</label>
+              <div className="mb-3">
+                <label for="exampleInputEmail1" className="form-label">Message</label>
                 <textarea onChange={handleChange} value={msgData.msg_text} name="msg_text" className='form-control' rows="10"></textarea>
               </div>
-              <button type="button" onClick={()=>formSubmit(row.student.id)} class="btn btn-primary">Send</button>
+              <button type="button" onClick={()=>formSubmit(row.student.id)} className="btn btn-primary">Send</button>
             </form>
             </div>
         </div>

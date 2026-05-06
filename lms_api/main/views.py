@@ -546,7 +546,8 @@ def save_teacher_student_msg(request, teacher_id, student_id):
         msg_from=msg_from,
     )
     if msgRes:
-        return JsonResponse({'bool': True, 'msg':'Message has been send'})
+        msgs=models.TeacherStudentChat.objects.filter(teacher=teacher,student=student).count()
+        return JsonResponse({'bool': True, 'msg':'Message has been send','total_msg':msgs})
     else:
         return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
 
@@ -560,6 +561,26 @@ class MessageList(generics.ListAPIView):
         teacher = models.Teacher.objects.get(pk=teacher_id)
         student = models.Student.objects.get(pk=student_id)
         return models.TeacherStudentChat.objects.filter(teacher=teacher, student=student).exclude(msg_text='')
+
+@csrf_exempt
+def save_teacher_student_group_msg(request, teacher_id):
+    teacher = models.Teacher.objects.get(id=teacher_id)
+    msg_text = request.POST.get('msg_text')
+    msg_from = request.POST.get('msg_from')
+
+    enrolledList = models.StudentCourseEnrollment.objects.filter(course__teacher=teacher).distinct()
+    for enrolled in enrolledList:
+        msgRes = models.TeacherStudentChat.objects.create(
+            teacher=teacher,
+            student=enrolled.student,
+            msg_text=msg_text,
+            msg_from=msg_from,
+        )
+
+    if msgRes:
+        return JsonResponse({'bool': True, 'msg':'Message has been send'})
+    else:
+        return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
 
 
 
