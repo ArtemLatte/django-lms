@@ -26,6 +26,7 @@ function Sidebar() {
             <div className="list-group list-group-flush">
                 <Link to='/user-dashboard' className='list-group-item list-group-item-action'>Dashboard</Link>
                 <Link to='/my-courses' className='list-group-item list-group-item-action'>My Courses</Link>
+                <Link to='/my-teachers' className='list-group-item list-group-item-action'>My Teachers</Link>
                 <Link to='/favorite-courses' className='list-group-item list-group-item-action'>Favorite Courses</Link>
                 <Link to='/recommended-courses' className='list-group-item list-group-item-action'>Recommended courses</Link>
                 <Link to='/my-assignments' className='list-group-item list-group-item-action'>

@@ -90,5 +90,8 @@ urlpatterns = [
 
     path('send-message/<int:teacher_id>/<int:student_id>', views.save_teacher_student_msg),
     path('get-messages/<int:teacher_id>/<int:student_id>', views.MessageList.as_view()),
+
     path('send-group-message/<int:teacher_id>', views.save_teacher_student_group_msg),
+
+    path('fetch-my-teachers/<int:student_id>', views.MyTeacherList.as_view()),
 ]

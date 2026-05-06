@@ -74,6 +74,7 @@ import ContactUs from './ContactUs';
 
 import {Routes as Switch, Route} from 'react-router-dom';
 import VerifyStudent from './User/VerifyStudent';
+import MyTeachers from './User/MyTeachers';
 
 
 function Main() {
@@ -93,6 +94,7 @@ function Main() {
             <Route path="/user-register" element={<Register />} />
             <Route path="/user-dashboard" element={<Dashboard />} />
             <Route path="/my-courses" element={<MyCourses />} />
+            <Route path="/my-teachers" element={<MyTeachers />} />
             <Route path="/favorite-courses" element={<FavoriteCourses />} />
             <Route path="/recommended-courses" element={<RecommendedCourses />} />
             <Route path="/profile-setting" element={<ProfileSetting />} />
