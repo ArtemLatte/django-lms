@@ -16,6 +16,10 @@ function TeacherProfileSetting(){
         'status':'',
         'profile_img':'',
         'p_img':'',
+        'vk_url':'',
+        'rutub_url':'',
+        'max_url':'',
+        'website_url':'',
         'login_via_otp':''
     });
     const teacherId=localStorage.getItem('teacherId');
@@ -33,6 +37,10 @@ function TeacherProfileSetting(){
                 skills:res.data.skills,
                 profile_img:res.data.profile_img,
                 p_img:'',
+                vk_url:res.data.vk_url,
+                rutub_url:res.data.rutub_url,
+                max_url:res.data.max_url,
+                website_url:res.data.website_url,
                 login_via_otp: res.data.login_via_otp
             });
         });
@@ -66,6 +74,10 @@ function TeacherProfileSetting(){
         teacherFormData.append("email", teacherData.email)
         teacherFormData.append("qualification", teacherData.qualification)
         teacherFormData.append("mobile_no", teacherData.mobile_no)
+        teacherFormData.append("vk_url", teacherData.vk_url)
+        teacherFormData.append("rutub_url", teacherData.rutub_url)
+        teacherFormData.append("max_url", teacherData.max_url)
+        teacherFormData.append("website_url", teacherData.website_url)
         teacherFormData.append("skills", teacherData.skills)
         teacherFormData.append("login_via_otp", teacherData.login_via_otp)
         if (teacherData.p_img!=''){
@@ -159,6 +171,31 @@ function TeacherProfileSetting(){
                                 </div>
                             </div>
                             <hr />
+                            <h4 className='my-4'>Социальные сети</h4>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">ВК</label>
+                                <div class="col-sm-10">
+                                <input type="text" name="vk_url" value={teacherData.vk_url} onChange={handleChange} class="form-control" id="staticEmail"/>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Рутуб</label>
+                                <div class="col-sm-10">
+                                <input type="text" name="rutub_url" value={teacherData.rutub_url} onChange={handleChange} class="form-control" id="staticEmail"/>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">МАКС</label>
+                                <div class="col-sm-10">
+                                <input type="text" name="max_url" value={teacherData.max_url} onChange={handleChange} class="form-control" id="staticEmail"/>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Веб сайт</label>
+                                <div class="col-sm-10">
+                                <input type="text" name="website_url" value={teacherData.website_url} onChange={handleChange} class="form-control" id="staticEmail"/>
+                                </div>
+                            </div>
                             <button className='btn btn-primary' onClick={submitForm}>Сохранить</button>
                         </div>
                     </div>

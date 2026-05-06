@@ -16,6 +16,12 @@ class Teacher(models.Model):
     otp_digit = models.CharField(max_length=10, null=True)
     login_via_otp = models.BooleanField(default=False)
 
+    vk_url = models.URLField(null=True)
+    rutub_url = models.URLField(null=True)
+    max_url = models.URLField(null=True)
+    website_url = models.URLField(null=True)
+    
+
     class Meta:
         verbose_name_plural = "1. Teachers"
 

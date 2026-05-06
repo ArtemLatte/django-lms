@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = ['id', 'full_name', 'email', 'password', 'qualification', 'mobile_no', 'skills', 'otp_digit', 'login_via_otp', 'profile_img', 'teacher_courses', 'skill_list', 'total_teacher_courses']
+        fields = ['id', 'full_name', 'email', 'vk_url', 'rutub_url', 'max_url', 'website_url', 'password', 'qualification', 'mobile_no', 'skills', 'otp_digit', 'login_via_otp', 'profile_img', 'teacher_courses', 'skill_list', 'total_teacher_courses']
         
     def __init__(self, *args, **kwargs):
         super(TeacherSerializer, self).__init__(*args, **kwargs)

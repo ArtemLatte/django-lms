@@ -22,6 +22,11 @@ function TeacherDetail() {
             console.log(error);
         }
     },[]);
+
+    const icon_style={
+        'font-size':'30px'
+    }
+
     return (
         <div className="container mt-3">
             <div className="row">
@@ -36,8 +41,21 @@ function TeacherDetail() {
                         <Link to={`/teacher-skill-courses/${skill.trim()}/${teacherData.id}`} className="badge badge-pill text-dark bg-warning ms-1">{skill.trim()}</Link>
                     )}
                     </p>
+                    <p>
                     <p className="fw-bold">Последний курс: <Link to="/category/php">ReactJs Course</Link></p>
-                    <p className="fw-bold">Рейтинг: 4.5/5</p>
+                    {teacherData.vk_url &&
+                    <a href={teacherData.vk_url} style={icon_style}><img src="/vk.svg" width={50}/></a>
+                    }
+                    {teacherData.rutub_url &&
+                    <a href={teacherData.rutub_url} className='ms-2' style={icon_style}><img src="/rutube.svg" width={40}/></a>
+                    }
+                    {teacherData.max_url &&
+                    <a href={teacherData.max_url} className='ms-2' style={icon_style}><img src="/max.svg" width={35}/></a>
+                    }
+                    {teacherData.website_url &&
+                    <a href={teacherData.website_url} className='ms-2' style={icon_style}><img src="/web.svg" width={35}/></a>
+                    }
+                    </p>
                 </div>
             </div>
             { /* Course Videos */}
