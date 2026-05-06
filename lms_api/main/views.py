@@ -593,6 +593,29 @@ def save_teacher_student_group_msg(request, teacher_id):
         return JsonResponse({'bool': True, 'msg':'Message has been send'})
     else:
         return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
+    
+@csrf_exempt
+def save_teacher_student_group_msg_from_student(request, student_id):
+    student = models.Student.objects.get(id=student_id)
+    msg_text = request.POST.get('msg_text')
+    msg_from = request.POST.get('msg_from')
+
+    sql=f"SELECT * FROM main_course as c,main_studentcourseenrollment as e,main_teacher as t WHERE c.teacher_id=t.id AND e.course_id=c.id AND e.student_id={student_id} GROUP BY c.teacher_id"
+    qs = models.Course.objects.raw(sql)
+
+    myCourses = qs
+    for course in myCourses:
+        msgRes = models.TeacherStudentChat.objects.create(
+            teacher=course.teacher,
+            student=student,
+            msg_text=msg_text,
+            msg_from=msg_from,
+        )
+
+    if msgRes:
+        return JsonResponse({'bool': True, 'msg':'Message has been send'})
+    else:
+        return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
 
 
 

@@ -25,11 +25,12 @@ function UserList() {
         msg_text:'',
     });
 
+    const [groupsuccessMsg,setgroupsuccessMsg]=useState('');
+    const [grouperrorMsg,setgrouperrorMsg]=useState('');
+
     const [msgData,setmsgData]=useState({
         msg_text:'',
     });
-    const [groupsuccessMsg,setgroupsuccessMsg]=useState('');
-    const [grouperrorMsg,setgrouperrorMsg]=useState('');
 
     const [successMsg,setsuccessMsg]=useState('');
     const [errorMsg,seterrorMsg]=useState('');
@@ -95,11 +96,6 @@ function UserList() {
             console.log(error);
         }
     };
-
-    const msgList = {
-        height:'500px',
-        overflow:'auto'
-    }
 
     return (
         <div className="container mt-4">
@@ -176,7 +172,7 @@ function UserList() {
       </div>
       <div className="modal-body">
         <div className="row">
-            <div className='col-md-8 mb-2 col-12 border-end' style={msgList}>
+            <div className='col-md-8 mb-2 col-12 border-end'>
                 <MessageList teacher_id={teacherId} student_id={row.student.id} />
             </div>
             <div className='col-md-4 col-12'>
