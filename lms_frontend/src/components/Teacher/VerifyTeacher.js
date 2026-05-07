@@ -56,15 +56,15 @@ function VerifyTeacher(){
             <div className="row">
                 <div className="col-6 offset-3">
                     <div className="card">
-                        <h5 className="card-header">Enter 6 digits otp</h5>
+                        <h5 className="card-header">Введите 6 цифр из кода</h5>
                         <div className="card-body">
                                 {errorMsg && <p className='text-danger'>{errorMsg}</p>}
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">OTP</label>
+                                    <label for="exampleInputEmail1" className="form-label">Код</label>
                                     <input type="number" name='otp_digit' value={teacherData.otp_digit}
                                     onChange={handleChange} className="form-control" />
                                 </div>
-                                <button type="submit" onClick={submitForm} className="btn btn-primary">Verify</button>
+                                <button type="submit" onClick={submitForm} className="btn btn-primary">Подтвердить</button>
                         </div>
                     </div>
                 </div>

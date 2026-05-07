@@ -61,14 +61,14 @@ function AllQuiz() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">All Quiz</h5>
+                        <h5 className="card-header">Квизы</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Total Questions</th>
-                                        <th>Action</th>
+                                        <th>Название</th>
+                                        <th>Всего вопросов</th>
+                                        <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,9 +80,9 @@ function AllQuiz() {
                                         </td>
                                         <td><Link to="#">123</Link></td>
                                         <td>
-                                            <Link class="btn btn-info btn-sm" to={`/edit-quiz/`+row.id}>Edit</Link>
-                                            <Link class="btn btn-success btn-sm ms-2" to={`/add-question/`+row.id}>Add Question</Link>
-                                            <button onClick={()=>handleDeleteClick(row.id)} className="btn btn-danger btn-sm ms-2">Delete</button>
+                                            <Link class="btn btn-info btn-sm" to={`/edit-quiz/`+row.id}>Изменить</Link>
+                                            <Link class="btn btn-success btn-sm ms-2" to={`/add-question/`+row.id}>Добавить вопрос</Link>
+                                            <button onClick={()=>handleDeleteClick(row.id)} className="btn btn-danger btn-sm ms-2">Удалить</button>
                                         </td>
                                     </tr>
                                     )}

@@ -11,3 +11,101 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Карточки курсов и учителей */
+.course-card,
+.teacher-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover,
+.teacher-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Аватар учителя */
+.teacher-card .rounded-circle {
+  border: 3px solid #dee2e6;
+  transition: border-color 0.2s;
+}
+
+.teacher-card:hover .rounded-circle {
+  border-color: #0d6efd;
+}
+
+/* Градиентный фон для карусели отзывов */
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #1e2a3a 0%, #0f172a 100%);
+}
+
+/* Кнопки "Смотреть все" */
+.btn-outline-primary {
+  border-radius: 2rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* Иконки звёзд, глаз, книг и т.д. */
+.bi-star-fill,
+.bi-eye,
+.bi-book,
+.bi-person-circle {
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+/* Заголовки */
+h3 i {
+  color: #0d6efd;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #e7f1ff;
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(13, 110, 253, 0.25);
+}
+
+.list-group-item-action {
+  transition: all 0.2s;
+}
+.list-group-item-action:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+}
+.rounded-4 {
+  border-radius: 1rem;
+}
+
+.input-group-text {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+.form-control.border-start-0 {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+.rounded-4 {
+  border-radius: 1rem;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+  transition: background-color 0.2s;
+}
+.rounded-4 {
+  border-radius: 1rem;
+}
+
+.quiz-option-btn {
+  transition: all 0.2s;
+}
+.quiz-option-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}

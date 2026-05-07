@@ -6,7 +6,7 @@ import {useParams} from 'react-router-dom';
 import Swal from 'sweetalert2'
 import axios from 'axios'
 const baseUrl = 'http://127.0.0.1:8000/api'
-function AllQuiz() {
+function AssignQuiz() {
     const [quizData,setquizData]=useState([]);
     const [courseData,setcourseData]=useState([]);
     const teacherId=localStorage.getItem('teacherId');
@@ -64,13 +64,13 @@ function AllQuiz() {
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Assign Quiz | <span className="text-primary">{courseData.title}</span></h5>
+                        <h5 className="card-header">Назначить квиз | <span className="text-primary">{courseData.title}</span></h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Action</th>
+                                        <th>Название</th>
+                                        <th>Статус</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,4 +92,4 @@ function AllQuiz() {
     )
 }
 
-export default AllQuiz;
+export default AssignQuiz;

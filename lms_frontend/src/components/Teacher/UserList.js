@@ -108,14 +108,14 @@ function UserList() {
                         <h5 className="card-header">Список всех студентов
                             <button type="button" className="btn btn-primary float-end btn-small" data-bs-toggle="modal" 
                             data-bs-target="#groupMsgModal">
-                                Send Message
+                                Отправить Сообщение
                             </button>
                         </h5>
                         <div className="modal fade" id="groupMsgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="staticBackdropLabel">Send Message to All Students</h5>
+                                <h5 className="modal-title" id="staticBackdropLabel">Отправить сообщение всем студентам</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
@@ -123,10 +123,10 @@ function UserList() {
                                 {grouperrorMsg && <p className='text-danger'>{grouperrorMsg}</p>}
                                 <form>
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">Message</label>
+                                    <label for="exampleInputEmail1" className="form-label">Сообщение</label>
                                     <textarea onChange={grouphandleChange} value={groupMsgData.msg_text} name="msg_text" className='form-control' rows="10"></textarea>
                                 </div>
-                                <button type="button" onClick={groupformSubmit} className="btn btn-primary">Send</button>
+                                <button type="button" onClick={groupformSubmit} className="btn btn-primary">Отправить</button>
                                 </form>
                             </div>
                             </div>

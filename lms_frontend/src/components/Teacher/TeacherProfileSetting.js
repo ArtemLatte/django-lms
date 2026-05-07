@@ -92,7 +92,7 @@ function TeacherProfileSetting(){
             }).then((response)=> {
                 if(response.status==200){
                     Swal.fire({
-                        title: 'Data has been updated',
+                        title: 'Данные обновлены',
                         icon: 'success',
                         toast:true,
                         timer:3000,

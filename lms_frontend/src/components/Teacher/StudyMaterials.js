@@ -27,10 +27,11 @@ function StudyMaterials(){
     //Delete data
     const handleDeleteClick = (study_id) => {
         Swal.fire({
-            title: 'Confirm',
-            text: 'Are you sure you want to delete this data?',
+            title: 'Внимание',
+            text: 'Вы уверены, что хотите удалить эти данные?',
             icon: 'info',
-            confirmButtonText: 'Continue',
+            confirmButtonText: 'Продолжить',
+            cancelButtonText: 'Отмена',
             showCancelButton:true
         }).then((result)=>{
             if(result.isConfirmed){
@@ -49,10 +50,10 @@ function StudyMaterials(){
                         }
                     });
                 }catch(error){
-                    Swal.fire('error', 'Data has not been deleted!!');
+                    Swal.fire('Ошибка', 'Данные не были удалены');
                 }
             }else{
-                Swal.fire('error', 'Data has not been deleted!!');
+                Swal.fire('Действие отменено', 'Данные не были удалены');
             }
         });
     }
@@ -85,7 +86,7 @@ function StudyMaterials(){
                                     <tr>
                                         <td>{row.title}</td>
                                         <td>
-                                            <button className='btn btn-outline-primary' onClick={()=>downloadFile(row.upload)}>Download File</button>
+                                            <button className='btn btn-outline-primary' onClick={()=>downloadFile(row.upload)}>Скачать файл</button>
                                         </td>
                                         <td>{row.remarks}</td>
                                         <td>

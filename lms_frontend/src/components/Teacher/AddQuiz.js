@@ -44,18 +44,18 @@ function AddQuiz(){
                 </aside>
                 <div className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'>Add Quiz</h5>
+                        <h5 className='card-header'>Добавить квиз</h5>
                         <div className='card-body'>
                             <form>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Title</label>
+                                    <label for="title" className="form-label">Название</label>
                                     <input type="text" name="title" onChange={handleChange} id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="description" className="form-label">Detail</label>
+                                    <label for="description" className="form-label">Описание</label>
                                     <textarea name="detail" onChange={handleChange} className="form-control" id="detail"></textarea>
                             </div>
-                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
+                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Добавить</button>
                             </form>
                         </div>
                     </div>

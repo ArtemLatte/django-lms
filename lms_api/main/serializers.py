@@ -39,6 +39,17 @@ class CategorySerializer(serializers.ModelSerializer):
         model = models.CourseCategory
         fields = ['id', 'title', 'description', 'total_courses']
 
+        def __init__(self, *args, **kwargs):
+            super(CategorySerializer, self).__init__(*args, **kwargs)
+            request = self.context.get('request')
+            if request and request.method == 'POST' or request.method == 'PUT' or request.method == 'PATCH':
+                print('Method is POST')
+                self.Meta.depth = 0
+                print(self.Meta.depth)
+            else:
+                print(f"Method is - {request.method}")
+                self.Meta.depth = 2
+
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Course

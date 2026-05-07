@@ -83,18 +83,18 @@ function AddAssignment(){
                 </aside>
                 <div className="col-md-9">
                     <div  className='card'>
-                        <h5 className='card-header'> Add Assignment</h5>
+                        <h5 className='card-header'>Добавить задание</h5>
                         <div className='card-body'>
                             <form>
                             <div className="mb-3">
-                                    <label for="title" className="form-label">Title</label>
+                                    <label for="title" className="form-label">Название</label>
                                     <input type="text" onChange={handleChange} name='title' id="title" className="form-control" />
                             </div>
                             <div className="mb-3">
-                                    <label for="detail" className="form-label">Description</label>
+                                    <label for="detail" className="form-label">Задание</label>
                                     <textarea className="form-control" onChange={handleChange} name='detail' id="detail"></textarea>
                             </div>
-                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Submit</button>
+                            <button type="button" onClick={formSubmit} className='btn btn-primary'>Отправить</button>
                             </form>
                         </div>
                     </div>

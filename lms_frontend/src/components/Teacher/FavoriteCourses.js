@@ -21,7 +21,7 @@ function FavoriteCourses() {
                                 </thead>
                                 <tbody>
                                     <td>Php Development</td>
-                                    <td><Link to="/">Suraj Kumar</Link></td>
+                                    <td><Link to="/">Имя Фамилия</Link></td>
                                     <td>
                                         <button className="btn btn-danger btn-sm active">Удалить</button>
                                     </td>
