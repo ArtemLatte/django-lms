@@ -269,13 +269,12 @@ function CourseDetail() {
                 Технологии:&nbsp;
                 {techListData.map((tech, index) => (
                   <Link
-                    key={index}
-                    to={`/category/${tech.trim()}`}
-                    className="badge bg-warning text-dark rounded-pill me-1 text-decoration-none"
-                  >
-                    <i className="bi bi-tag me-1"></i>
-                    {tech.trim()}
-                  </Link>
+                  key={index}
+                  to={`/course/${courseData.category?.id}/${tech.trim()}`}
+                  className="badge bg-warning text-dark rounded-pill me-1 text-decoration-none"
+                >
+                  {tech.trim()}
+                </Link>
                 ))}
               </p>
 

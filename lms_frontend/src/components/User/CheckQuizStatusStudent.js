@@ -27,7 +27,7 @@ function CheckQuizStatusStudent(props) {
 
   return (
     <div className="d-inline-block">
-      {quizData.bool === true && (
+      {quizData.bool === false && (
         <Link
           className="btn btn-success btn-sm rounded-pill px-3"
           to={`/take-quiz/${props.quiz}`}
@@ -35,7 +35,7 @@ function CheckQuizStatusStudent(props) {
           <i className="bi bi-pencil-square me-1"></i>Пройти квиз
         </Link>
       )}
-      {quizData.bool === false && (
+      {quizData.bool === true && (
         <span className="badge bg-success rounded-pill px-3 py-2">
           <i className="bi bi-check-circle-fill me-1"></i>Выполнен
         </span>

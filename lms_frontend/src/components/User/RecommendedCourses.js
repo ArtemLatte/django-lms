@@ -12,7 +12,7 @@ function RecommendedCourses() {
         try{
         axios.get(baseUrl+'/fetch-recommended-courses/'+studentId)
         .then((res)=>{
-                setcourseData(res.data);
+                setcourseData(res.data.results);
         });
         }catch(error){
             console.log(error);

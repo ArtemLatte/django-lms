@@ -13,7 +13,7 @@ function TeacherSkillCourses() {
     try {
       axios.get(baseUrl + '/course/?skill_name=' + skill_name + '&teacher=' + teacher_id)
         .then((res) => {
-          setCourseData(res.data);
+          setCourseData(res.data.results);
         });
     } catch (error) {
       console.log(error);

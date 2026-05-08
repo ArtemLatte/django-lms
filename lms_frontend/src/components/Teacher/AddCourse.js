@@ -48,6 +48,10 @@ function AddCourse(){
         _formData.append('featured_img', courseData.f_img, courseData.f_img.name);
         _formData.append('techs', courseData.techs);
 
+        if (courseData.f_img){
+            _formData.append('featured_img', courseData.f_img);
+        }
+
         try {
             axios.post(baseUrl+'/course/',_formData,{
                 headers: {
@@ -77,8 +81,18 @@ function AddCourse(){
                             <form>
                             <div className="mb-3">
                                     <label for="title" className="form-label">Категория</label>
-                                    <select name="category" onChange={handleChange} class="form-control">
-                                        {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}</option>})}
+                                    <select
+                                        name="category"
+                                        onChange={handleChange}
+                                        className="form-control"
+                                    >
+                                        <option value="">Выберите категорию</option>
+
+                                        {cats.map((category,index)=>(
+                                            <option key={index} value={category.id}>
+                                                {category.title}
+                                            </option>
+                                        ))}
                                     </select>
                             </div>
                             <div className="mb-3">
