@@ -54,7 +54,7 @@ function StudentAssignments() {
         </aside>
         <section className="col-md-9">
           <div className="card border-0 shadow-sm rounded-4 overflow-hidden">
-            <div className="card-header bg-primary text-white py-3">
+            <div className="card-header bg-success text-white py-3">
               <h5 className="card-title mb-0">
                 <i className="bi bi-journal-check me-2"></i>
                 Мои задания
@@ -86,7 +86,7 @@ function StudentAssignments() {
                     {assignmentData.map((row, index) => (
                       <tr key={index}>
                         <td className="ps-4 fw-medium">
-                          <i className="bi bi-pencil-square me-2 text-primary"></i>
+                          <i className="bi bi-pencil-square me-2 text-success"></i>
                           {row.title}
                         </td>
                         <td>{row.detail || '—'}</td>

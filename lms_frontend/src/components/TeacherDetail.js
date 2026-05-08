@@ -84,45 +84,45 @@ function TeacherDetail() {
                 {teacherData.vk_url && (
                   <a
                     href={teacherData.vk_url}
-                    className="btn btn-outline-secondary rounded-circle me-2"
+                    className="btn me-2"
                     style={icon_style}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="bi bi-vk"></i>
+                    <img src="/vk.svg" width={45} height={45}/>
                   </a>
                 )}
                 {teacherData.rutub_url && (
                   <a
                     href={teacherData.rutub_url}
-                    className="btn btn-outline-danger rounded-circle me-2"
+                    className="btn me-2"
                     style={icon_style}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="bi bi-camera-reels-fill"></i>
+                    <img src="/rutube-t.svg" width={45} height={45}/>
                   </a>
                 )}
                 {teacherData.max_url && (
                   <a
                     href={teacherData.max_url}
-                    className="btn btn-outline-info rounded-circle me-2"
+                    className="btn me-2"
                     style={icon_style}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="bi bi-globe2"></i>
+                    <img src="/max.svg" width={35} height={35}/>
                   </a>
                 )}
                 {teacherData.website_url && (
                   <a
                     href={teacherData.website_url}
-                    className="btn btn-outline-success rounded-circle me-2"
+                    className="btn me-2"
                     style={icon_style}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="bi bi-browser-chrome"></i>
+                    <img src="/web.svg" width={35} height={35}/>
                   </a>
                 )}
               </div>

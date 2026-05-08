@@ -142,7 +142,7 @@ function UserList() {
                                         <th>E-mail</th>
                                         <th>Имя пользователя</th>
                                         <th>Заинтересованные категории</th>
-                                        <th>Assignment</th>
+                                        <th>Взаимодействие</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -155,9 +155,9 @@ function UserList() {
                                             {row.student.interested_categories}
                                         </td>
                                         <td>
-                                            <Link to={`/show-assignment/${row.student.id}/${teacherId}`} className='btn btn-sm btn-warning mb-2 me-2'>Assignments</Link>
+                                            <Link to={`/show-assignment/${row.student.id}/${teacherId}`} className='btn btn-sm btn-warning mb-2 me-2'>Задания</Link>
                                             <Link to={`/add-assignment/${row.student.id}/${teacherId}`} 
-                                            className='btn btn-sm btn-success mb-2 me-2'>Add Assignment</Link>
+                                            className='btn btn-sm btn-success mb-2 me-2'>Добавить задание</Link>
                                             <button data-bs-toggle="modal" data-bs-target={`#msgModal${index}`} className='btn btn-sm btn-dark mb-2' title='Send Message'><i className="bi bi-chat-fill"></i></button>
 
 {/*Message Modal*/}
