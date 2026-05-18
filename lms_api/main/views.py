@@ -11,6 +11,7 @@ from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
 from django.contrib.flatpages.models import FlatPage
+from django.contrib.auth.hashers import make_password, check_password
 from django.core.mail import send_mail
 
 from random import randint
@@ -40,18 +41,30 @@ class TeacherDashboard(generics.RetrieveAPIView):
 
 @csrf_exempt
 def teacher_login(request):
-    email=request.POST['email']
-    password=request.POST['password']
+    email = request.POST['email']
+    password = request.POST['password']
+
     try:
-        teacherData=models.Teacher.objects.get(email=email,password=password)
+        teacherData = models.Teacher.objects.get(email=email)
+
+        if not check_password(password, teacherData.password):
+            teacherData = None
+
     except models.Teacher.DoesNotExist:
-        teacherData=None
+        teacherData = None
+
     if teacherData:
         if not teacherData.verify_status:
-            return JsonResponse({'bool': False, 'msg':'Account is not verified!!'})
+            return JsonResponse({
+                'bool': False,
+                'msg': 'Account is not verified!!'
+            })
+
         else:
             if teacherData.login_via_otp:
+
                 otp_digit = randint(100000, 999999)
+
                 send_mail(
                     'Verify Account',
                     'Please verify your account',
@@ -60,13 +73,28 @@ def teacher_login(request):
                     fail_silently=False,
                     html_message=f'<p>Your OTP is </p><p>{otp_digit}</p>'
                 )
-                teacherData.otp_digit=otp_digit
+
+                teacherData.otp_digit = otp_digit
                 teacherData.save()
-                return JsonResponse({'bool':True, 'teacher_id':teacherData.id, 'login_via_otp':True})
+
+                return JsonResponse({
+                    'bool': True,
+                    'teacher_id': teacherData.id,
+                    'login_via_otp': True
+                })
+
             else:
-                return JsonResponse({'bool':True, 'teacher_id':teacherData.id, 'login_via_otp':False})
+                return JsonResponse({
+                    'bool': True,
+                    'teacher_id': teacherData.id,
+                    'login_via_otp': False
+                })
+
     else:
-        return JsonResponse({'bool':False, 'msg':'Invalid Email Or Password!!'})
+        return JsonResponse({
+            'bool': False,
+            'msg': 'Invalid Email Or Password!!'
+        })
 
 @csrf_exempt
 def verify_teacher_via_otp(request, teacher_id):
@@ -172,18 +200,30 @@ class StudentDashboard(generics.RetrieveAPIView):
 
 @csrf_exempt
 def student_login(request):
-    email=request.POST['email']
-    password=request.POST['password']
+    email = request.POST['email']
+    password = request.POST['password']
+
     try:
-        studentData=models.Student.objects.get(email=email,password=password)
+        studentData = models.Student.objects.get(email=email)
+
+        if not check_password(password, studentData.password):
+            studentData = None
+
     except models.Student.DoesNotExist:
-        studentData=None
+        studentData = None
+
     if studentData:
         if not studentData.verify_status:
-            return JsonResponse({'bool': False, 'msg':'Account is not verified!!'})
+            return JsonResponse({
+                'bool': False,
+                'msg': 'Account is not verified!!'
+            })
+
         else:
             if studentData.login_via_otp:
+
                 otp_digit = randint(100000, 999999)
+
                 send_mail(
                     'Verify Account',
                     'Please verify your account',
@@ -192,13 +232,28 @@ def student_login(request):
                     fail_silently=False,
                     html_message=f'<p>Your OTP is </p><p>{otp_digit}</p>'
                 )
-                studentData.otp_digit=otp_digit
+
+                studentData.otp_digit = otp_digit
                 studentData.save()
-                return JsonResponse({'bool':True, 'student_id':studentData.id, 'login_via_otp':True})
+
+                return JsonResponse({
+                    'bool': True,
+                    'student_id': studentData.id,
+                    'login_via_otp': True
+                })
+
             else:
-                return JsonResponse({'bool':True, 'student_id':studentData.id, 'login_via_otp':False})
+                return JsonResponse({
+                    'bool': True,
+                    'student_id': studentData.id,
+                    'login_via_otp': False
+                })
+
     else:
-        return JsonResponse({'bool':False, 'msg':'Invalid Email Or Password!!'})
+        return JsonResponse({
+            'bool': False,
+            'msg': 'Invalid Email Or Password!!'
+        })
     
 
 @csrf_exempt
@@ -308,16 +363,25 @@ def fetch_rating_status(request, student_id, course_id):
     
 @csrf_exempt
 def teacher_change_password(request, teacher_id):
-    password=request.POST['password']
-    try:
-        teacherData=models.Teacher.objects.get(id=teacher_id)
-    except models.Teacher.DoesNotExist:
-        teacherData=None
-    if teacherData:
-        models.Teacher.objects.filter(id=teacher_id).update(password=password)
-        return JsonResponse({'bool':True})
+    password = request.POST.get('password')
+
+    verify = models.Teacher.objects.filter(id=teacher_id).first()
+
+    if verify:
+        models.Teacher.objects.filter(id=teacher_id).update(
+            password=make_password(password)
+        )
+
+        return JsonResponse({
+            'bool': True,
+            'msg': 'Password has been change'
+        })
+
     else:
-        return JsonResponse({'bool':False})
+        return JsonResponse({
+            'bool': False,
+            'msg': 'Ooops... Some error occured!!'
+        })
 
 class AssignmentList(generics.ListCreateAPIView):
     queryset = models.StudentAssignment.objects.all()
@@ -347,14 +411,22 @@ class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
 
 @csrf_exempt
 def student_change_password(request, student_id):
-    password=request.POST['password']
+    password = request.POST['password']
+
     try:
-        studentData=models.Student.objects.get(id=student_id)
+        studentData = models.Student.objects.get(id=student_id)
+
     except models.Student.DoesNotExist:
-        studentData=None
+        studentData = None
+
     if studentData:
-        models.Student.objects.filter(id=student_id).update(password=password)
+
+        models.Student.objects.filter(id=student_id).update(
+            password=make_password(password)
+        )
+
         return JsonResponse({'bool':True})
+
     else:
         return JsonResponse({'bool':False})
 
@@ -538,12 +610,25 @@ def user_forgot_password(request):
 @csrf_exempt
 def user_change_password(request, student_id):
     password = request.POST.get('password')
+
     verify = models.Student.objects.filter(id=student_id).first()
+
     if verify:
-        models.Student.objects.filter(id=student_id).update(password=password)
-        return JsonResponse({'bool': True, 'msg':'Password has been change'})
+
+        models.Student.objects.filter(id=student_id).update(
+            password=make_password(password)
+        )
+
+        return JsonResponse({
+            'bool': True,
+            'msg': 'Password has been change'
+        })
+
     else:
-        return JsonResponse({'bool': False, 'msg':'Ooops... Some error occured!!'})
+        return JsonResponse({
+            'bool': False,
+            'msg': 'Ooops... Some error occured!!'
+        })
 
 @csrf_exempt
 def save_teacher_student_msg(request, teacher_id, student_id):

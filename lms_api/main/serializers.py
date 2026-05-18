@@ -1,24 +1,56 @@
 from rest_framework import serializers
 from . import models
 from django.contrib.flatpages.models import FlatPage
+from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = ['id', 'full_name', 'email', 'vk_url', 'rutub_url', 'max_url', 'website_url', 'password', 'qualification', 'mobile_no', 'skills', 'otp_digit', 'login_via_otp', 'profile_img', 'teacher_courses', 'skill_list', 'total_teacher_courses']
-        
+        fields = [
+            'id',
+            'full_name',
+            'email',
+            'vk_url',
+            'rutub_url',
+            'max_url',
+            'website_url',
+            'password',
+            'qualification',
+            'mobile_no',
+            'skills',
+            'otp_digit',
+            'login_via_otp',
+            'profile_img',
+            'teacher_courses',
+            'skill_list',
+            'total_teacher_courses'
+        ]
+
     def __init__(self, *args, **kwargs):
         super(TeacherSerializer, self).__init__(*args, **kwargs)
+
         request = self.context.get('request')
+
         self.Meta.depth = 0
+
         if request and request.method == 'GET':
             self.Meta.depth = 1
 
-    def create(self, validate_data):
-        email = self.validated_data['email']
-        otp_digit = self.validated_data['otp_digit']
-        instance = super(TeacherSerializer, self).create(validate_data)
+    def create(self, validated_data):
+
+        validated_data['password'] = make_password(
+            validated_data['password']
+        )
+
+        email = validated_data['email']
+        otp_digit = validated_data['otp_digit']
+
+        instance = super(
+            TeacherSerializer,
+            self
+        ).create(validated_data)
+
         send_mail(
             'Verify Account',
             'Please verify your account',
@@ -27,6 +59,7 @@ class TeacherSerializer(serializers.ModelSerializer):
             fail_silently=False,
             html_message=f'<p>Your OTP is </p><p>{otp_digit}</p>'
         )
+
         return instance
 
 class TeacherDashboardSerializer(serializers.ModelSerializer):
@@ -80,12 +113,32 @@ class ChapterSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Student
-        fields = ['id', 'full_name', 'email', 'password', 'username', 'login_via_otp', 'interested_categories', 'profile_img', 'otp_digit']
+        fields = [
+            'id',
+            'full_name',
+            'email',
+            'password',
+            'username',
+            'login_via_otp',
+            'interested_categories',
+            'profile_img',
+            'otp_digit'
+        ]
 
-    def create(self, validate_data):
-        email = self.validated_data['email']
-        otp_digit = self.validated_data['otp_digit']
-        instance = super(StudentSerializer, self).create(validate_data)
+    def create(self, validated_data):
+
+        validated_data['password'] = make_password(
+            validated_data['password']
+        )
+
+        email = validated_data['email']
+        otp_digit = validated_data['otp_digit']
+
+        instance = super(
+            StudentSerializer,
+            self
+        ).create(validated_data)
+
         send_mail(
             'Verify Account',
             'Please verify your account',
@@ -94,6 +147,7 @@ class StudentSerializer(serializers.ModelSerializer):
             fail_silently=False,
             html_message=f'<p>Your OTP is </p><p>{otp_digit}</p>'
         )
+
         return instance
             
 

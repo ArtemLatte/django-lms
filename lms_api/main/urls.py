@@ -1,9 +1,28 @@
 from django.urls import path
 from . import views
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="LMS API",
+        default_version='v1',
+        description="Документация API учебной платформы",
+    ),
+    public=True,
+)
+
 
 urlpatterns = [
     #Teacher
     path("teacher/", views.TeacherList.as_view()),
+    path('token/', TokenObtainPairView.as_view()),
+    path('token/refresh/', TokenRefreshView.as_view()),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
     path('teacher/dashboard/<int:pk>/', views.TeacherDashboard.as_view()),
     path("teacher/<int:pk>/", views.TeacherDetail.as_view()),
     path("teacher/change-password/<int:teacher_id>/", views.teacher_change_password),
